@@ -1,13 +1,11 @@
 name: CI Build
 
-on:
-  pull_request:
-    branches:
-      - master
+on: [push]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2-beta
@@ -22,4 +20,3 @@ jobs:
 
       - name: Test
         run: dotnet test
-  
