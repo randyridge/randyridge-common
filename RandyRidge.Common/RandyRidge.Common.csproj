@@ -11,6 +11,11 @@
     <TargetFrameworks>netcoreapp3.1;netstandard2.1</TargetFrameworks>
     <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <Version>0.1.0</Version>
+    <Authors>Randy Ridge</Authors>
+    <Company />
+    <PackageProjectUrl>https://github.com/randyridge/randyridge-common</PackageProjectUrl>
+    <RepositoryUrl></RepositoryUrl>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>DEBUG</DefineConstants>
