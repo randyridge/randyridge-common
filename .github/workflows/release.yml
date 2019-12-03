@@ -17,6 +17,9 @@ jobs:
         with:
           dotnet-version: '3.1.100-preview3-014645' 
 
+      - name: Nerdbank
+        uses: aarnott/nbgv@master
+
       - name: Build
         run: dotnet build --configuration Release
 
