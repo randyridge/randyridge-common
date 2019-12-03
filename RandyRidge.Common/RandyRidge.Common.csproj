@@ -2,6 +2,7 @@
   <PropertyGroup>
     <Description>Provides commonly used functionality and helpers.</Description>
     <DocumentationFile>bin\RandyRidge.Common.xml</DocumentationFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <IncludeSymbols>true</IncludeSymbols>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
