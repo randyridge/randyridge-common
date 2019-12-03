@@ -1,7 +1,7 @@
-name: NuGet Package Deploy
+name: CI Build
 
 on:
-  push:
+  pull_request:
     branches:
       - master
 
@@ -22,14 +22,4 @@ jobs:
 
       - name: Test
         run: dotnet test
-  deploy:
-    runs-on: windows-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v1
-
-      - name: Pack
-        run: dotnet pack --configuration Release RandyRidge.Common
-
-      - name: Push
-        run: dotnet nuget push RandyRidge.Common/bin/Release/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} -- source https://api.nuget.org/v3/index.json
+  
