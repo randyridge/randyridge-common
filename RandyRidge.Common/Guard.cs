@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
@@ -81,6 +82,34 @@ namespace RandyRidge.Common {
             }
 
             return argument;
+        }
+
+        /// <summary>
+        ///     Throws an exception if the tested collection argument is null or has no items.
+        /// </summary>
+        /// <param name="argument">
+        ///     The argument to test.
+        /// </param>
+        /// <param name="argumentName">
+        ///     The name of the argument.
+        /// </param>
+        /// <returns>
+        ///     The argument.
+        /// </returns>
+        /// <exception cref="ArgumentException">
+        ///     Thrown if <paramref name="argument" /> is an empty collection.
+        /// </exception>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown if <paramref name="argument" /> is null.
+        /// </exception>
+        [DebuggerHidden]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static ICollection<T> ArgumentNotNullOrEmpty<T>(ICollection<T>? argument, string argumentName) {
+            if(argument == null) {
+                throw new ArgumentNullException(argumentName);
+            }
+
+            return argument.Count == 0 ? throw new ArgumentException($"'{argumentName}' must not be empty.", argumentName) : argument;
         }
 
         /// <summary>
