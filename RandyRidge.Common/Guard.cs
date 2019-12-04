@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
 namespace RandyRidge.Common {
@@ -25,13 +24,7 @@ namespace RandyRidge.Common {
         /// </returns>
         [DebuggerHidden]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T ArgumentNotNull<T>(T? argument, string argumentName) where T : class {
-            if(argument == null) {
-                throw new ArgumentNullException(argumentName);
-            }
-
-            return argument;
-        }
+        public static T ArgumentNotNull<T>(T? argument, string argumentName) where T : class => argument ?? throw new ArgumentNullException(argumentName);
 
         /// <summary>
         ///     Throws an exception if the given argument is null.
@@ -50,12 +43,6 @@ namespace RandyRidge.Common {
         /// </returns>
         [DebuggerHidden]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T ArgumentNotNull<T>(T? argument, string argumentName) where T : struct {
-            if(argument == null) {
-                throw new ArgumentNullException(argumentName);
-            }
-
-            return argument.Value;
-        }
+        public static T ArgumentNotNull<T>(T? argument, string argumentName) where T : struct => argument ?? throw new ArgumentNullException(argumentName);
     }
 }
