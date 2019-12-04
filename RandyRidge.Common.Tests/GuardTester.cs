@@ -4,40 +4,43 @@ using Xunit;
 
 namespace RandyRidge.Common {
     public abstract class GuardTester {
-        public sealed class ArgumentNotNullWithClass {
+        private const string ArgumentName = "arg";
+        private const string? ClassWithValue = "test";
+        private static readonly string? ClassWithoutValue = null;
+        private static readonly int? StructWithoutValue = null;
+        private static readonly int? StructWithValue = 42;
+
+        public sealed class ArgumentNotNullWithClass : GuardTester {
             [Fact]
             public void returns_the_argument() {
-                Guard.ArgumentNotNull("hi", "argument").ShouldBe("hi");
+                Guard.ArgumentNotNull(ClassWithValue, ArgumentName).ShouldBe(ClassWithValue);
             }
 
             [Fact]
             public void should_not_throw_on_instance() {
-                Should.NotThrow(() => Guard.ArgumentNotNull(string.Empty, "argument"));
+                Should.NotThrow(() => Guard.ArgumentNotNull(ClassWithValue, ArgumentName));
             }
 
             [Fact]
             public void should_throw_on_null() {
-                Should.Throw<ArgumentNullException>(() => Guard.ArgumentNotNull<object>(null, "argument"));
+                Should.Throw<ArgumentNullException>(() => Guard.ArgumentNotNull<object>(ClassWithoutValue, ArgumentName));
             }
         }
 
-        public sealed class ArgumentNotNullWithStruct {
+        public sealed class ArgumentNotNullWithStruct : GuardTester {
             [Fact]
             public void returns_the_argument() {
-                int? i = 0;
-                Guard.ArgumentNotNull(i, "argument").ShouldBe(0);
+                Guard.ArgumentNotNull(StructWithValue, ArgumentName).ShouldBe(StructWithValue!.Value);
             }
 
             [Fact]
             public void should_not_throw_on_instance() {
-                int? i = 0;
-                Should.NotThrow(() => Guard.ArgumentNotNull(i, "argument"));
+                Should.NotThrow(() => Guard.ArgumentNotNull(StructWithValue, ArgumentName));
             }
 
             [Fact]
             public void should_throw_on_null() {
-                int? i = null;
-                Should.Throw<ArgumentNullException>(() => Guard.ArgumentNotNull(i, "argument"));
+                Should.Throw<ArgumentNullException>(() => Guard.ArgumentNotNull(StructWithoutValue, ArgumentName));
             }
         }
     }

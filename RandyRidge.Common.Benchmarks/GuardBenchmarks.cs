@@ -6,8 +6,6 @@ namespace RandyRidge.Common {
     [RPlotExporter, RankColumn]
     public class GuardBenchmarks {
         [Benchmark(Baseline = true)]
-        public void GuardWithout() {
-            Guard.ArgumentNotNull(string.Empty, "argument");
-        }
+        public void GuardWithout() => Guard.ArgumentNotNull(string.Empty, "argument");
     }
 }
