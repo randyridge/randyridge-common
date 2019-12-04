@@ -6,7 +6,7 @@
     <RootNamespace>RandyRidge.Common</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <NoWarn>1701;1702;CA1034;CA1707</NoWarn>
+    <NoWarn>1701;1702;CA1034;CA1303;CA1707</NoWarn>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <WarningsAsErrors />
   </PropertyGroup>
