@@ -143,5 +143,179 @@ namespace RandyRidge.Common {
 
             return argument;
         }
+
+        /// <summary>
+        ///     Throws an exception if the tested argument is less-than the specified minimum, exclusive.
+        /// </summary>
+        /// <param name="argument">
+        ///     The argument to test.
+        /// </param>
+        /// <param name="minimum">
+        ///     The minimum value, exclusive.
+        /// </param>
+        /// <param name="argumentName">
+        ///     The name of the argument.
+        /// </param>
+        /// <returns>
+        ///     The argument.
+        /// </returns>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     Thrown if <paramref name="argument" /> is less than the specified minimum, exclusive.
+        /// </exception>
+        [DebuggerHidden]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static double MinimumExclusive(double argument, double minimum, string argumentName) {
+            if(argument <= minimum) {
+                throw new ArgumentOutOfRangeException(argumentName, $"{argumentName} must be greater-than {minimum}, exclusive.");
+            }
+
+            return argument;
+        }
+
+        /// <summary>
+        ///     Throws an exception if the tested argument is less-than the specified minimum, exclusive.
+        /// </summary>
+        /// <param name="argument">
+        ///     The argument to test.
+        /// </param>
+        /// <param name="minimum">
+        ///     The minimum value, exclusive.
+        /// </param>
+        /// <param name="argumentName">
+        ///     The name of the argument.
+        /// </param>
+        /// <returns>
+        ///     The argument.
+        /// </returns>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     Thrown if <paramref name="argument" /> is less than the specified minimum, exclusive.
+        /// </exception>
+        [DebuggerHidden]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int MinimumExclusive(int argument, int minimum, string argumentName) {
+            if(argument <= minimum) {
+                throw new ArgumentOutOfRangeException(argumentName, $"{argumentName} must be greater-than {minimum}, exclusive.");
+            }
+
+            return argument;
+        }
+
+        /// <summary>
+        ///     Throws an exception if the tested argument is less-than the specified minimum, inclusive.
+        /// </summary>
+        /// <param name="argument">
+        ///     The argument to test.
+        /// </param>
+        /// <param name="minimum">
+        ///     The minimum value, inclusive.
+        /// </param>
+        /// <param name="argumentName">
+        ///     The name of the argument.
+        /// </param>
+        /// <returns>
+        ///     The argument.
+        /// </returns>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     Thrown if <paramref name="argument" /> is less than the specified minimum, inclusive.
+        /// </exception>
+        [DebuggerHidden]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static double MinimumInclusive(double argument, double minimum, string argumentName) {
+            if(argument < minimum) {
+                throw new ArgumentOutOfRangeException(argumentName, $"{argumentName} must be greater-than {minimum}, exclusive.");
+            }
+
+            return argument;
+        }
+
+        /// <summary>
+        ///     Throws an exception if the tested argument is less-than the specified minimum, inclusive.
+        /// </summary>
+        /// <param name="argument">
+        ///     The argument to test.
+        /// </param>
+        /// <param name="minimum">
+        ///     The minimum value, inclusive.
+        /// </param>
+        /// <param name="argumentName">
+        ///     The name of the argument.
+        /// </param>
+        /// <returns>
+        ///     The argument.
+        /// </returns>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     Thrown if <paramref name="argument" /> is less than the specified minimum, inclusive.
+        /// </exception>
+        [DebuggerHidden]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int MinimumInclusive(int argument, int minimum, string argumentName) {
+            if(argument < minimum) {
+                throw new ArgumentOutOfRangeException(argumentName, $"{argumentName} must be greater-than {minimum}, exclusive.");
+            }
+
+            return argument;
+        }
+
+        /// <summary>
+        ///     Throws an exception if the tested argument is outside the specified minimum and maximum range, inclusive.
+        /// </summary>
+        /// <param name="argument">
+        ///     The argument to test.
+        /// </param>
+        /// <param name="minimum">
+        ///     The minimum value, inclusive.
+        /// </param>
+        /// <param name="maximum">
+        ///     The maximum value, inclusive.
+        /// </param>
+        /// <param name="argumentName">
+        ///     The name of the argument.
+        /// </param>
+        /// <returns>
+        ///     The argument.
+        /// </returns>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     Thrown if <paramref name="argument" /> is less than the specified minimum, inclusive.
+        /// </exception>
+        [DebuggerHidden]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static double RangeInclusive(double argument, double minimum, double maximum, string argumentName) {
+            if(argument < minimum || argument > maximum) {
+                throw new ArgumentOutOfRangeException(argumentName, $"{argumentName} must be between {minimum} and {maximum}, inclusive.");
+            }
+
+            return argument;
+        }
+
+        /// <summary>
+        ///     Throws an exception if the tested argument is outside the specified minimum and maximum range, inclusive.
+        /// </summary>
+        /// <param name="argument">
+        ///     The argument to test.
+        /// </param>
+        /// <param name="minimum">
+        ///     The minimum value, inclusive.
+        /// </param>
+        /// <param name="maximum">
+        ///     The maximum value, inclusive.
+        /// </param>
+        /// <param name="argumentName">
+        ///     The name of the argument.
+        /// </param>
+        /// <returns>
+        ///     The argument.
+        /// </returns>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     Thrown if <paramref name="argument" /> is less than the specified minimum, inclusive.
+        /// </exception>
+        [DebuggerHidden]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int RangeInclusive(int argument, int minimum, int maximum, string argumentName) {
+            if(argument < minimum || argument > maximum) {
+                throw new ArgumentOutOfRangeException(argumentName, $"{argumentName} must be between {minimum} and {maximum}, inclusive.");
+            }
+
+            return argument;
+        }
     }
 }
