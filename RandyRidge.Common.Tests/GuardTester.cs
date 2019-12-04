@@ -20,6 +20,20 @@ namespace RandyRidge.Common {
             public void should_throw_on_null() => Should.Throw<ArgumentNullException>(() => Guard.ArgumentNotNullOrEmpty(CommonTestValues.NullString, Arg));
         }
 
+        public sealed class ArgumentNotNullOrEmptyWithCollection : GuardTester {
+            [Fact]
+            public void returns_the_argument() => Guard.ArgumentNotNullOrEmpty(CommonTestValues.TestArray, Arg).ShouldBe(CommonTestValues.TestArray);
+
+            [Fact]
+            public void should_not_throw_on_instance() => Should.NotThrow(() => Guard.ArgumentNotNullOrEmpty(CommonTestValues.TestArray, Arg));
+
+            [Fact]
+            public void should_throw_on_empty() => Should.Throw<ArgumentException>(() => Guard.ArgumentNotNullOrEmpty(CommonTestValues.EmptyArray, Arg));
+
+            [Fact]
+            public void should_throw_on_null() => Should.Throw<ArgumentNullException>(() => Guard.ArgumentNotNullOrEmpty(CommonTestValues.NullArray, Arg));
+        }
+
         public sealed class ArgumentNotNullOrWhiteSpace : GuardTester {
             [Fact]
             public void returns_the_argument() => Guard.ArgumentNotNullOrWhiteSpace(CommonTestValues.TestString, Arg).ShouldBe(CommonTestValues.TestString);
