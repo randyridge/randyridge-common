@@ -2,30 +2,30 @@
 using Xunit;
 
 namespace RandyRidge.Common {
-    public abstract class ICollectionExtensionsTester {
-        public sealed class HasValue : ICollectionExtensionsTester {
+    public static class ICollectionExtensionsTester {
+        public static class HasValue {
             [Fact]
-            public static void returns_false_on_empty() => CommonTestValues.EmptyArray.HasValue().ShouldBeFalse();
+            public static void returns_false_on_empty() => CommonTestValues.EmptyCollection.HasValue().ShouldBeFalse();
 
             [Fact]
-            public static void returns_false_on_null() => CommonTestValues.NullArray.HasValue().ShouldBeFalse();
+            public static void returns_false_on_null() => CommonTestValues.NullCollection.HasValue().ShouldBeFalse();
 
             [Fact]
-            public static void returns_true_on_populated_collection() => CommonTestValues.TestArray.HasValue().ShouldBeTrue();
+            public static void returns_true_on_populated_collection() => CommonTestValues.TestCollection.HasValue().ShouldBeTrue();
 
             [Fact]
-            public static void returns_true_on_populated_collection_with_only_null_entry() => CommonTestValues.TestArray.HasValue().ShouldBeTrue();
+            public static void returns_true_on_populated_collection_with_only_null_entry() => CommonTestValues.TestCollection.HasValue().ShouldBeTrue();
         }
 
-        public sealed class IsNullOrEmpty : ICollectionExtensionsTester {
+        public static class IsNullOrEmpty {
             [Fact]
-            public static void returns_false_on_populated_collection() => CommonTestValues.TestArray.IsNullOrEmpty().ShouldBeFalse();
+            public static void returns_false_on_populated_collection() => CommonTestValues.TestCollection.IsNullOrEmpty().ShouldBeFalse();
 
             [Fact]
-            public static void returns_true_on_empty() => CommonTestValues.EmptyArray.IsNullOrEmpty().ShouldBeTrue();
+            public static void returns_true_on_empty() => CommonTestValues.EmptyCollection.IsNullOrEmpty().ShouldBeTrue();
 
             [Fact]
-            public static void returns_true_on_null() => CommonTestValues.NullArray.IsNullOrEmpty().ShouldBeTrue();
+            public static void returns_true_on_null() => CommonTestValues.NullCollection.IsNullOrEmpty().ShouldBeTrue();
         }
     }
 }

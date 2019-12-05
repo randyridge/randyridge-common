@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text;
 
 namespace RandyRidge.Common {
     /// <summary>
@@ -65,5 +66,30 @@ namespace RandyRidge.Common {
         [DebuggerHidden]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IsNullOrEmpty<T>(this IEnumerable<T>? enumerable) => enumerable?.Any() != true;
+
+        /// <summary>
+        ///     Converts to specified byte array to its hexadecimal representation.
+        /// </summary>
+        /// <param name="bytes">
+        ///     The bytes to convert.
+        /// </param>
+        /// <remarks>
+        ///     All lowercase, no preceding 0x.
+        /// </remarks>
+        /// <returns>
+        ///     The hexadecimal representation of the specified byte array.
+        /// </returns>
+        [DebuggerHidden]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static string ToHex(this IEnumerable<byte>? bytes) {
+            bytes = Guard.ArgumentNotNull(bytes, nameof(bytes));
+
+            var result = new StringBuilder();
+            foreach(var b in bytes) {
+                result.Append(b.ToHex());
+            }
+
+            return result.ToString();
+        }
     }
 }
