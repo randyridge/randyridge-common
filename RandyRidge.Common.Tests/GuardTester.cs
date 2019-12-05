@@ -3,171 +3,171 @@ using Shouldly;
 using Xunit;
 
 namespace RandyRidge.Common {
-    public abstract class GuardTester {
+    public static class GuardTester {
         private const string Arg = "arg";
 
-        public sealed class ArgumentNotNullOrEmpty : GuardTester {
+        public static class ArgumentNotNullOrEmpty {
             [Fact]
-            public void returns_the_argument() => Guard.ArgumentNotNullOrEmpty(CommonTestValues.TestString, Arg).ShouldBe(CommonTestValues.TestString);
+            public static void returns_the_argument() => Guard.ArgumentNotNullOrEmpty(CommonTestValues.TestString, Arg).ShouldBe(CommonTestValues.TestString);
 
             [Fact]
-            public void should_not_throw_on_instance() => Should.NotThrow(() => Guard.ArgumentNotNullOrEmpty(CommonTestValues.TestString, Arg));
+            public static void should_not_throw_on_instance() => Should.NotThrow(() => Guard.ArgumentNotNullOrEmpty(CommonTestValues.TestString, Arg));
 
             [Fact]
-            public void should_throw_on_empty() => Should.Throw<ArgumentException>(() => Guard.ArgumentNotNullOrEmpty(CommonTestValues.EmptyString, Arg));
+            public static void should_throw_on_empty() => Should.Throw<ArgumentException>(() => Guard.ArgumentNotNullOrEmpty(CommonTestValues.EmptyString, Arg));
 
             [Fact]
-            public void should_throw_on_null() => Should.Throw<ArgumentNullException>(() => Guard.ArgumentNotNullOrEmpty(CommonTestValues.NullString, Arg));
+            public static void should_throw_on_null() => Should.Throw<ArgumentNullException>(() => Guard.ArgumentNotNullOrEmpty(CommonTestValues.NullString, Arg));
         }
 
-        public sealed class ArgumentNotNullOrEmptyWithCollection : GuardTester {
+        public static class ArgumentNotNullOrEmptyWithCollection {
             [Fact]
-            public void returns_the_argument() => Guard.ArgumentNotNullOrEmpty(CommonTestValues.TestArray, Arg).ShouldBe(CommonTestValues.TestArray);
+            public static void returns_the_argument() => Guard.ArgumentNotNullOrEmpty(CommonTestValues.TestArray, Arg).ShouldBe(CommonTestValues.TestArray);
 
             [Fact]
-            public void should_not_throw_on_instance() => Should.NotThrow(() => Guard.ArgumentNotNullOrEmpty(CommonTestValues.TestArray, Arg));
+            public static void should_not_throw_on_instance() => Should.NotThrow(() => Guard.ArgumentNotNullOrEmpty(CommonTestValues.TestArray, Arg));
 
             [Fact]
-            public void should_throw_on_empty() => Should.Throw<ArgumentException>(() => Guard.ArgumentNotNullOrEmpty(CommonTestValues.EmptyArray, Arg));
+            public static void should_throw_on_empty() => Should.Throw<ArgumentException>(() => Guard.ArgumentNotNullOrEmpty(CommonTestValues.EmptyArray, Arg));
 
             [Fact]
-            public void should_throw_on_null() => Should.Throw<ArgumentNullException>(() => Guard.ArgumentNotNullOrEmpty(CommonTestValues.NullArray, Arg));
+            public static void should_throw_on_null() => Should.Throw<ArgumentNullException>(() => Guard.ArgumentNotNullOrEmpty(CommonTestValues.NullArray, Arg));
         }
 
-        public sealed class ArgumentNotNullOrWhiteSpace : GuardTester {
+        public static class ArgumentNotNullOrWhiteSpace {
             [Fact]
-            public void returns_the_argument() => Guard.ArgumentNotNullOrWhiteSpace(CommonTestValues.TestString, Arg).ShouldBe(CommonTestValues.TestString);
+            public static void returns_the_argument() => Guard.ArgumentNotNullOrWhiteSpace(CommonTestValues.TestString, Arg).ShouldBe(CommonTestValues.TestString);
 
             [Fact]
-            public void should_not_throw_on_instance() => Should.NotThrow(() => Guard.ArgumentNotNullOrWhiteSpace(CommonTestValues.TestString, Arg));
+            public static void should_not_throw_on_instance() => Should.NotThrow(() => Guard.ArgumentNotNullOrWhiteSpace(CommonTestValues.TestString, Arg));
 
             [Fact]
-            public void should_throw_on_empty() => Should.Throw<ArgumentException>(() => Guard.ArgumentNotNullOrWhiteSpace(CommonTestValues.EmptyString, Arg));
+            public static void should_throw_on_empty() => Should.Throw<ArgumentException>(() => Guard.ArgumentNotNullOrWhiteSpace(CommonTestValues.EmptyString, Arg));
 
             [Fact]
-            public void should_throw_on_null() => Should.Throw<ArgumentNullException>(() => Guard.ArgumentNotNullOrWhiteSpace(CommonTestValues.NullString, Arg));
+            public static void should_throw_on_null() => Should.Throw<ArgumentNullException>(() => Guard.ArgumentNotNullOrWhiteSpace(CommonTestValues.NullString, Arg));
 
             [Fact]
-            public void should_throw_on_whitespace() => Should.Throw<ArgumentException>(() => Guard.ArgumentNotNullOrWhiteSpace(CommonTestValues.WhitespaceString, Arg));
+            public static void should_throw_on_whitespace() => Should.Throw<ArgumentException>(() => Guard.ArgumentNotNullOrWhiteSpace(CommonTestValues.WhitespaceString, Arg));
         }
 
-        public sealed class ArgumentNotNullWithClass : GuardTester {
+        public static class ArgumentNotNullWithClass {
             [Fact]
-            public void returns_the_argument() => Guard.ArgumentNotNull(CommonTestValues.TestString, Arg).ShouldBe(CommonTestValues.TestString);
+            public static void returns_the_argument() => Guard.ArgumentNotNull(CommonTestValues.TestString, Arg).ShouldBe(CommonTestValues.TestString);
 
             [Fact]
-            public void should_not_throw_on_instance() => Should.NotThrow(() => Guard.ArgumentNotNull(CommonTestValues.TestString, Arg));
+            public static void should_not_throw_on_instance() => Should.NotThrow(() => Guard.ArgumentNotNull(CommonTestValues.TestString, Arg));
 
             [Fact]
-            public void should_throw_on_null() => Should.Throw<ArgumentNullException>(() => Guard.ArgumentNotNull(CommonTestValues.NullString, Arg));
+            public static void should_throw_on_null() => Should.Throw<ArgumentNullException>(() => Guard.ArgumentNotNull(CommonTestValues.NullString, Arg));
         }
 
-        public sealed class ArgumentNotNullWithStruct : GuardTester {
+        public static class ArgumentNotNullWithStruct {
             [Fact]
             // ReSharper disable once PossibleInvalidOperationException
-            public void returns_the_argument() => Guard.ArgumentNotNull(CommonTestValues.TestNullableInt, Arg).ShouldBe(CommonTestValues.TestNullableInt!.Value);
+            public static void returns_the_argument() => Guard.ArgumentNotNull(CommonTestValues.TestNullableInt, Arg).ShouldBe(CommonTestValues.TestNullableInt!.Value);
 
             [Fact]
-            public void should_not_throw_on_instance() => Should.NotThrow(() => Guard.ArgumentNotNull(CommonTestValues.TestNullableInt, Arg));
+            public static void should_not_throw_on_instance() => Should.NotThrow(() => Guard.ArgumentNotNull(CommonTestValues.TestNullableInt, Arg));
 
             [Fact]
-            public void should_throw_on_null() => Should.Throw<ArgumentNullException>(() => Guard.ArgumentNotNull(CommonTestValues.NullNullableInt, Arg));
+            public static void should_throw_on_null() => Should.Throw<ArgumentNullException>(() => Guard.ArgumentNotNull(CommonTestValues.NullNullableInt, Arg));
         }
 
-        public sealed class MinimumExclusiveDouble : GuardTester {
+        public static class MinimumExclusiveDouble {
             [Fact]
-            public void returns_the_argument() => Guard.MinimumExclusive(1.0, 0.0, Arg).ShouldBe(1.0);
+            public static void returns_the_argument() => Guard.MinimumExclusive(1.0, 0.0, Arg).ShouldBe(1.0);
 
             [Fact]
-            public void should_not_throw_on_valid_range() => Should.NotThrow(() => Guard.MinimumExclusive(1.0, 0.0, Arg));
+            public static void should_not_throw_on_valid_range() => Should.NotThrow(() => Guard.MinimumExclusive(1.0, 0.0, Arg));
 
             [Fact]
-            public void should_throw_on_less_than_minimum() => Should.Throw<ArgumentOutOfRangeException>(() => Guard.MinimumExclusive(0.0, 1.0, Arg));
+            public static void should_throw_on_less_than_minimum() => Should.Throw<ArgumentOutOfRangeException>(() => Guard.MinimumExclusive(0.0, 1.0, Arg));
 
             [Fact]
-            public void should_throw_on_minimum() => Should.Throw<ArgumentOutOfRangeException>(() => Guard.MinimumExclusive(0.0, 0.0, Arg));
+            public static void should_throw_on_minimum() => Should.Throw<ArgumentOutOfRangeException>(() => Guard.MinimumExclusive(0.0, 0.0, Arg));
         }
 
-        public sealed class MinimumExclusiveInt : GuardTester {
+        public static class MinimumExclusiveInt {
             [Fact]
-            public void returns_the_argument() => Guard.MinimumExclusive(1, 0, Arg).ShouldBe(1);
+            public static void returns_the_argument() => Guard.MinimumExclusive(1, 0, Arg).ShouldBe(1);
 
             [Fact]
-            public void should_not_throw_on_valid_range() => Should.NotThrow(() => Guard.MinimumExclusive(1, 0, Arg));
+            public static void should_not_throw_on_valid_range() => Should.NotThrow(() => Guard.MinimumExclusive(1, 0, Arg));
 
             [Fact]
-            public void should_throw_on_less_than_minimum() => Should.Throw<ArgumentOutOfRangeException>(() => Guard.MinimumExclusive(0, 1, Arg));
+            public static void should_throw_on_less_than_minimum() => Should.Throw<ArgumentOutOfRangeException>(() => Guard.MinimumExclusive(0, 1, Arg));
 
             [Fact]
-            public void should_throw_on_minimum() => Should.Throw<ArgumentOutOfRangeException>(() => Guard.MinimumExclusive(0, 0, Arg));
+            public static void should_throw_on_minimum() => Should.Throw<ArgumentOutOfRangeException>(() => Guard.MinimumExclusive(0, 0, Arg));
         }
 
-        public sealed class MinimumInclusiveDouble : GuardTester {
+        public sealed class MinimumInclusiveDouble {
             [Fact]
-            public void returns_the_argument() => Guard.MinimumInclusive(1.0, 0.0, Arg).ShouldBe(1.0);
+            public static void returns_the_argument() => Guard.MinimumInclusive(1.0, 0.0, Arg).ShouldBe(1.0);
 
             [Fact]
-            public void should_not_throw_on_minimum() => Should.NotThrow(() => Guard.MinimumInclusive(0.0, 0.0, Arg));
+            public static void should_not_throw_on_minimum() => Should.NotThrow(() => Guard.MinimumInclusive(0.0, 0.0, Arg));
 
             [Fact]
-            public void should_not_throw_on_valid_range() => Should.NotThrow(() => Guard.MinimumInclusive(1.0, 0.0, Arg));
+            public static void should_not_throw_on_valid_range() => Should.NotThrow(() => Guard.MinimumInclusive(1.0, 0.0, Arg));
 
             [Fact]
-            public void should_throw_on_less_than_minimum() => Should.Throw<ArgumentOutOfRangeException>(() => Guard.MinimumInclusive(0.0, 1.0, Arg));
+            public static void should_throw_on_less_than_minimum() => Should.Throw<ArgumentOutOfRangeException>(() => Guard.MinimumInclusive(0.0, 1.0, Arg));
         }
 
-        public sealed class MinimumInclusiveInt : GuardTester {
+        public static class MinimumInclusiveInt {
             [Fact]
-            public void returns_the_argument() => Guard.MinimumInclusive(1, 0, Arg).ShouldBe(1);
+            public static void returns_the_argument() => Guard.MinimumInclusive(1, 0, Arg).ShouldBe(1);
 
             [Fact]
-            public void should_not_throw_on_minimum() => Should.NotThrow(() => Guard.MinimumInclusive(0, 0, Arg));
+            public static void should_not_throw_on_minimum() => Should.NotThrow(() => Guard.MinimumInclusive(0, 0, Arg));
 
             [Fact]
-            public void should_not_throw_on_valid_range() => Should.NotThrow(() => Guard.MinimumInclusive(1, 0, Arg));
+            public static void should_not_throw_on_valid_range() => Should.NotThrow(() => Guard.MinimumInclusive(1, 0, Arg));
 
             [Fact]
-            public void should_throw_on_less_than_minimum() => Should.Throw<ArgumentOutOfRangeException>(() => Guard.MinimumInclusive(0, 1, Arg));
+            public static void should_throw_on_less_than_minimum() => Should.Throw<ArgumentOutOfRangeException>(() => Guard.MinimumInclusive(0, 1, Arg));
         }
 
-        public sealed class RangeInclusiveDouble : GuardTester {
+        public static class RangeInclusiveDouble {
             [Fact]
-            public void returns_the_argument() => Guard.RangeInclusive(1.0, 0.0, 42.0, Arg).ShouldBe(1.0);
+            public static void returns_the_argument() => Guard.RangeInclusive(1.0, 0.0, 42.0, Arg).ShouldBe(1.0);
 
             [Fact]
-            public void should_not_throw_on_maximum() => Should.NotThrow(() => Guard.RangeInclusive(42.0, 0.0, 42.0, Arg));
+            public static void should_not_throw_on_maximum() => Should.NotThrow(() => Guard.RangeInclusive(42.0, 0.0, 42.0, Arg));
 
             [Fact]
-            public void should_not_throw_on_minimum() => Should.NotThrow(() => Guard.RangeInclusive(0.0, 0.0, 42.0, Arg));
+            public static void should_not_throw_on_minimum() => Should.NotThrow(() => Guard.RangeInclusive(0.0, 0.0, 42.0, Arg));
 
             [Fact]
-            public void should_not_throw_on_valid_range() => Should.NotThrow(() => Guard.RangeInclusive(1.0, 0.0, 42.0, Arg));
+            public static void should_not_throw_on_valid_range() => Should.NotThrow(() => Guard.RangeInclusive(1.0, 0.0, 42.0, Arg));
 
             [Fact]
-            public void should_throw_on_greater_than_maximum() => Should.Throw<ArgumentOutOfRangeException>(() => Guard.RangeInclusive(100.0, 1.0, 42.0, Arg));
+            public static void should_throw_on_greater_than_maximum() => Should.Throw<ArgumentOutOfRangeException>(() => Guard.RangeInclusive(100.0, 1.0, 42.0, Arg));
 
             [Fact]
-            public void should_throw_on_less_than_minimum() => Should.Throw<ArgumentOutOfRangeException>(() => Guard.RangeInclusive(0.0, 1.0, 42.0, Arg));
+            public static void should_throw_on_less_than_minimum() => Should.Throw<ArgumentOutOfRangeException>(() => Guard.RangeInclusive(0.0, 1.0, 42.0, Arg));
         }
 
-        public sealed class RangeInclusiveInt : GuardTester {
+        public static class RangeInclusiveInt {
             [Fact]
-            public void returns_the_argument() => Guard.RangeInclusive(1, 0, 42, Arg).ShouldBe(1);
+            public static void returns_the_argument() => Guard.RangeInclusive(1, 0, 42, Arg).ShouldBe(1);
 
             [Fact]
-            public void should_not_throw_on_maximum() => Should.NotThrow(() => Guard.RangeInclusive(42, 0, 42, Arg));
+            public static void should_not_throw_on_maximum() => Should.NotThrow(() => Guard.RangeInclusive(42, 0, 42, Arg));
 
             [Fact]
-            public void should_not_throw_on_minimum() => Should.NotThrow(() => Guard.RangeInclusive(0, 0, 42, Arg));
+            public static void should_not_throw_on_minimum() => Should.NotThrow(() => Guard.RangeInclusive(0, 0, 42, Arg));
 
             [Fact]
-            public void should_not_throw_on_valid_range() => Should.NotThrow(() => Guard.RangeInclusive(1, 0, 42, Arg));
+            public static void should_not_throw_on_valid_range() => Should.NotThrow(() => Guard.RangeInclusive(1, 0, 42, Arg));
 
             [Fact]
-            public void should_throw_on_greater_than_maximum() => Should.Throw<ArgumentOutOfRangeException>(() => Guard.RangeInclusive(100, 1, 42, Arg));
+            public static void should_throw_on_greater_than_maximum() => Should.Throw<ArgumentOutOfRangeException>(() => Guard.RangeInclusive(100, 1, 42, Arg));
 
             [Fact]
-            public void should_throw_on_less_than_minimum() => Should.Throw<ArgumentOutOfRangeException>(() => Guard.RangeInclusive(0, 1, 42, Arg));
+            public static void should_throw_on_less_than_minimum() => Should.Throw<ArgumentOutOfRangeException>(() => Guard.RangeInclusive(0, 1, 42, Arg));
         }
     }
 }

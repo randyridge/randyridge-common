@@ -1,5 +1,7 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using System.Text;
 
 namespace RandyRidge.Common {
     /// <summary>
@@ -31,5 +33,24 @@ namespace RandyRidge.Common {
         [DebuggerHidden]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IsNullOrWhiteSpace(this string? text) => string.IsNullOrWhiteSpace(text);
+
+        /// <summary>
+        ///     Converts the specified string to UTF-8 bytes.
+        /// </summary>
+        /// <param name="text">
+        ///     The text to convert.
+        /// </param>
+        /// <returns>
+        ///     The bytes for the UTF-8 encoding of the text.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown if <paramref name="text" /> is null.
+        /// </exception>
+        [DebuggerHidden]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static byte[] ToUtfBytes(this string? text) {
+            text = Guard.ArgumentNotNull(text, nameof(text));
+            return text.Length == 0 ? Array.Empty<byte>() : Encoding.UTF8.GetBytes(text);
+        }
     }
 }

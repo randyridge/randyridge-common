@@ -2,21 +2,21 @@
 using Xunit;
 
 namespace RandyRidge.Common {
-    public abstract class ObjectExtensionsTester {
-        public sealed class HasValue : ObjectExtensionsTester {
+    public static class ObjectExtensionsTester {
+        public static class HasValue {
             [Fact]
-            public void returns_false_on_null() => CommonTestValues.NullObject.HasValue().ShouldBeFalse();
+            public static void returns_false_on_null() => CommonTestValues.NullObject.HasValue().ShouldBeFalse();
 
             [Fact]
-            public void returns_true_on_non_null() => CommonTestValues.TestObject.HasValue().ShouldBeTrue();
+            public static void returns_true_on_non_null() => CommonTestValues.TestObject.HasValue().ShouldBeTrue();
         }
 
-        public sealed class IsNull : ObjectExtensionsTester {
+        public static class IsNull {
             [Fact]
-            public void returns_false_on_non_null() => CommonTestValues.TestObject.IsNull().ShouldBeFalse();
+            public static void returns_false_on_non_null() => CommonTestValues.TestObject.IsNull().ShouldBeFalse();
 
             [Fact]
-            public void returns_true_on_null() => CommonTestValues.NullObject.IsNull().ShouldBeTrue();
+            public static void returns_true_on_null() => CommonTestValues.NullObject.IsNull().ShouldBeTrue();
         }
     }
 }
