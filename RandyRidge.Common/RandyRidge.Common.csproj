@@ -3,15 +3,15 @@
     <Description>Provides commonly used functionality and helpers.</Description>
     <DocumentationFile>bin\RandyRidge.Common.xml</DocumentationFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <IncludeSymbols>true</IncludeSymbols>
-    <LangVersion>latest</LangVersion>
+    <IncludeSymbos>true</IncludeSymbos>
+    <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFrameworks>netcoreapp3.1;netstandard2.1</TargetFrameworks>
     <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <Version>0.1.8</Version>
+    <Version>0.1.9</Version>
     <Authors>Randy Ridge</Authors>
     <Company />
     <PackageProjectUrl>https://github.com/randyridge/randyridge-common</PackageProjectUrl>
