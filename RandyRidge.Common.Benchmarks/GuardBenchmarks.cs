@@ -1,11 +1,9 @@
 ﻿using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.Jobs;
 
 namespace RandyRidge.Common {
-    [SimpleJob(RuntimeMoniker.NetCoreApp31)]
-    [RankColumn]
+    [Config(typeof(DefaultBenchmarkConfig))]
     public class GuardBenchmarks {
         [Benchmark(Baseline = true)]
-        public void GuardWithout() => Guard.ArgumentNotNull(string.Empty, "argument");
+        public void ArgumentNotNull() => Guard.ArgumentNotNull(string.Empty, "argument");
     }
 }
