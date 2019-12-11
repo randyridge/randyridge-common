@@ -52,5 +52,27 @@ namespace RandyRidge.Common {
             text = Guard.ArgumentNotNull(text, nameof(text));
             return text.Length == 0 ? Array.Empty<byte>() : Encoding.UTF8.GetBytes(text);
         }
+
+        /// <summary>
+        ///     Performs an invariant culture string replace.
+        /// </summary>
+        /// <param name="text">
+        ///     The text to replace.
+        /// </param>
+        /// <param name="oldValue">
+        ///     The old value to replace.
+        /// </param>
+        /// <param name="newValue">
+        ///     The new value to replace with.
+        /// </param>
+        /// <returns>
+        ///     The replaced text.
+        /// </returns>
+        [DebuggerHidden]
+        public static string ReplaceInvariant(this string text, string? oldValue, string? newValue) {
+            text = Guard.ArgumentNotNull(text, nameof(text));
+            oldValue = Guard.ArgumentNotNull(oldValue, nameof(oldValue));
+            return text.Replace(oldValue, newValue, StringComparison.InvariantCulture);
+        }
     }
 }

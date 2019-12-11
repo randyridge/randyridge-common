@@ -31,6 +31,11 @@ namespace RandyRidge.Common {
             public static void returns_true_on_whitespace() => CommonTestValues.WhitespaceString.IsNullOrWhiteSpace().ShouldBeTrue();
         }
 
+        public static class ReplaceInvariant {
+            [Fact]
+            public static void returns_correct_value() => "test".ReplaceInvariant("test", "x").ShouldBe("x");
+        }
+
         public static class ToUtf8Bytes {
             [Fact]
             public static void returns_correct_value() => "test".ToUtfBytes();
