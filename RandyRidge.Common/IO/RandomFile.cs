@@ -2,7 +2,7 @@
 using System.IO;
 using IoPath = System.IO.Path;
 
-namespace RandyRidge.Common {
+namespace RandyRidge.Common.IO {
     /// <summary>
     ///     Creates a random file in temporary space.
     /// </summary>

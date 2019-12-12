@@ -2,7 +2,7 @@
 using Shouldly;
 using Xunit;
 
-namespace RandyRidge.Common {
+namespace RandyRidge.Common.IO {
     public static class RandomFileTester {
         public static class Constructor {
             [Fact]
