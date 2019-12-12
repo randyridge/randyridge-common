@@ -5,7 +5,7 @@ using System.Linq;
 // ReSharper disable ConvertToConstant.Global
 
 namespace RandyRidge.Common {
-    public static class CommonTestValues {
+    public static class TestValues {
         public static readonly string[]? EmptyArray = Array.Empty<string>();
         public static readonly byte[]? EmptyByteArray = Array.Empty<byte>();
         public static readonly ICollection<int>? EmptyCollection = Array.Empty<int>();

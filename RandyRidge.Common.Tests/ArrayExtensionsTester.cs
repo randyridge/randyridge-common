@@ -6,27 +6,27 @@ namespace RandyRidge.Common {
     public static class ArrayExtensionsTester {
         public static class HasValue {
             [Fact]
-            public static void returns_false_on_empty() => CommonTestValues.EmptyArray.HasValue().ShouldBeFalse();
+            public static void returns_false_on_empty() => TestValues.EmptyArray.HasValue().ShouldBeFalse();
 
             [Fact]
-            public static void returns_false_on_null() => CommonTestValues.NullArray.HasValue().ShouldBeFalse();
+            public static void returns_false_on_null() => TestValues.NullArray.HasValue().ShouldBeFalse();
 
             [Fact]
-            public static void returns_true_on_populated_collection() => CommonTestValues.TestArray.HasValue().ShouldBeTrue();
+            public static void returns_true_on_populated_collection() => TestValues.TestArray.HasValue().ShouldBeTrue();
 
             [Fact]
-            public static void returns_true_on_populated_collection_with_only_null_entry() => CommonTestValues.TestArray.HasValue().ShouldBeTrue();
+            public static void returns_true_on_populated_collection_with_only_null_entry() => TestValues.TestArray.HasValue().ShouldBeTrue();
         }
 
         public static class IsNullOrEmpty {
             [Fact]
-            public static void returns_false_on_populated_collection() => CommonTestValues.TestArray.IsNullOrEmpty().ShouldBeFalse();
+            public static void returns_false_on_populated_collection() => TestValues.TestArray.IsNullOrEmpty().ShouldBeFalse();
 
             [Fact]
-            public static void returns_true_on_empty() => CommonTestValues.EmptyArray.IsNullOrEmpty().ShouldBeTrue();
+            public static void returns_true_on_empty() => TestValues.EmptyArray.IsNullOrEmpty().ShouldBeTrue();
 
             [Fact]
-            public static void returns_true_on_null() => CommonTestValues.NullArray.IsNullOrEmpty().ShouldBeTrue();
+            public static void returns_true_on_null() => TestValues.NullArray.IsNullOrEmpty().ShouldBeTrue();
         }
 
         public static class StructureEquals {
