@@ -32,13 +32,13 @@ namespace RandyRidge.Common {
             private static readonly HashAlgorithm HashAlgorithm = HashAlgorithm.Create("MD5");
 
             [Fact]
-            public static void returns_correct_value() => ByteArrayExtensions.ToHashText("test".ToUtfBytes(), HashAlgorithm).ShouldBe(CommonTestValues.TestMd5Hash);
+            public static void returns_correct_value() => ByteArrayExtensions.ToHashText("test".ToUtfBytes(), HashAlgorithm).ShouldBe(TestValues.TestMd5Hash);
 
             [Fact]
-            public static void throws_on_empty_bytes() => Should.Throw<ArgumentException>(() => ByteArrayExtensions.ToHashText(CommonTestValues.EmptyByteArray, HashAlgorithm));
+            public static void throws_on_empty_bytes() => Should.Throw<ArgumentException>(() => ByteArrayExtensions.ToHashText(TestValues.EmptyByteArray, HashAlgorithm));
 
             [Fact]
-            public static void throws_on_null_bytes() => Should.Throw<ArgumentNullException>(() => ByteArrayExtensions.ToHashText(CommonTestValues.NullByteArray, HashAlgorithm));
+            public static void throws_on_null_bytes() => Should.Throw<ArgumentNullException>(() => ByteArrayExtensions.ToHashText(TestValues.NullByteArray, HashAlgorithm));
         }
     }
 }
