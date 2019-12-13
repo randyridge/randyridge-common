@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Shouldly;
 using Xunit;
 
@@ -72,6 +73,23 @@ namespace RandyRidge.Common {
 
             [Fact]
             public static void should_throw_on_null() => Should.Throw<ArgumentNullException>(() => Guard.ArgumentNotNull(TestValues.NullNullableInt, Arg));
+        }
+
+        public static class FileExists {
+            [Fact]
+            public static void returns_the_argument() => Guard.FileExists(TestValues.TestFilePath, Arg).ShouldBe(TestValues.TestFilePath);
+
+            [Fact]
+            public static void should_throw_on_empty() => Should.Throw<ArgumentException>(() => Guard.FileExists(TestValues.EmptyString, Arg));
+
+            [Fact]
+            public static void should_throw_on_missing_file() => Should.Throw<FileNotFoundException>(() => Guard.FileExists("Missing.txt", Arg));
+
+            [Fact]
+            public static void should_throw_on_null() => Should.Throw<ArgumentNullException>(() => Guard.FileExists(TestValues.NullString, Arg));
+
+            [Fact]
+            public static void should_throw_on_whitespace() => Should.Throw<ArgumentException>(() => Guard.FileExists(TestValues.WhitespaceString, Arg));
         }
 
         public static class MinimumExclusiveDouble {
