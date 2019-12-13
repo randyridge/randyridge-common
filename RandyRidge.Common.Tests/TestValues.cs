@@ -24,6 +24,7 @@ namespace RandyRidge.Common {
         public static readonly IEnumerable<int>? TestEnumerable = Enumerable.Range(1, 3);
         public static readonly string TestMd5Hash = "098f6bcd4621d373cade4e832627b4f6"; // "test"
         public static readonly int? TestNullableInt = 42;
+        public static readonly string? TestFilePath = "TestFile.txt";
         public static readonly object? TestObject = "test";
         public static readonly string? TestString = "test";
         public static readonly string? WhitespaceString = "   ";

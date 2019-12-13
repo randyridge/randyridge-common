@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Runtime.CompilerServices;
 
 namespace RandyRidge.Common {
@@ -142,6 +143,45 @@ namespace RandyRidge.Common {
             }
 
             return argument;
+        }
+
+        /// <summary>
+        ///     Throws an exception if the specified file does not exist.
+        /// </summary>
+        /// <param name="filePath">
+        ///     The file path to test.
+        /// </param>
+        /// <param name="argumentName">
+        ///     The name of the argument.
+        /// </param>
+        /// <returns>
+        ///     The argument.
+        /// </returns>
+        /// <exception cref="ArgumentException">
+        ///     Thrown if <paramref name="filePath" /> is an empty string or only contains whitespace characters.
+        /// </exception>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown if <paramref name="filePath" /> is null.
+        /// </exception>
+        /// <exception cref="FileNotFoundException">
+        ///     Thrown if <paramref name="filePath" /> is null.
+        /// </exception>
+        [DebuggerHidden]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static string FileExists(string? filePath, string argumentName) {
+            if(filePath == null) {
+                throw new ArgumentNullException(argumentName);
+            }
+
+            if(filePath.IsNullOrWhiteSpace()) {
+                throw new ArgumentException($"'{argumentName}' must not be an empty string or contain only whitespace characters.", argumentName);
+            }
+
+            if(!File.Exists(filePath)) {
+                throw new FileNotFoundException(null, filePath);
+            }
+
+            return filePath;
         }
 
         /// <summary>

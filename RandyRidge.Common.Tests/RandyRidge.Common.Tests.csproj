@@ -12,6 +12,14 @@
     <NoWarn>1701;1702;CA1707;</NoWarn>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="TestFile.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TestFile.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
