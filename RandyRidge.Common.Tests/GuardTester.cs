@@ -36,20 +36,6 @@ namespace RandyRidge.Common {
             public static void should_throw_on_null() => Should.Throw<ArgumentNullException>(() => Guard.NotNullOrEmpty(TestValues.NullArray as ICollection<string>, Arg));
         }
 
-        public static class ArgumentNotNullOrEmptyWithReadOnlyCollection {
-            [Fact]
-            public static void returns_the_argument() => Guard.NotNullOrEmpty(TestValues.TestArray as IReadOnlyCollection<string>, Arg).ShouldBe(TestValues.TestArray);
-
-            [Fact]
-            public static void should_not_throw_on_instance() => Should.NotThrow(() => Guard.NotNullOrEmpty(TestValues.TestArray as IReadOnlyCollection<string>, Arg));
-
-            [Fact]
-            public static void should_throw_on_empty() => Should.Throw<ArgumentException>(() => Guard.NotNullOrEmpty(TestValues.EmptyArray as IReadOnlyCollection<string>, Arg));
-
-            [Fact]
-            public static void should_throw_on_null() => Should.Throw<ArgumentNullException>(() => Guard.NotNullOrEmpty(TestValues.NullArray as IReadOnlyCollection<string>, Arg));
-        }
-
         public static class ArgumentNotNullOrWhiteSpace {
             [Fact]
             public static void returns_the_argument() => Guard.NotNullOrWhiteSpace(TestValues.TestString, Arg).ShouldBe(TestValues.TestString);
