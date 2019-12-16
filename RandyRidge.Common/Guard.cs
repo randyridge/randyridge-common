@@ -114,6 +114,34 @@ namespace RandyRidge.Common {
         }
 
         /// <summary>
+        ///     Throws an exception if the tested collection argument is null or has no items.
+        /// </summary>
+        /// <param name="argument">
+        ///     The argument to test.
+        /// </param>
+        /// <param name="argumentName">
+        ///     The name of the argument.
+        /// </param>
+        /// <returns>
+        ///     The argument.
+        /// </returns>
+        /// <exception cref="ArgumentException">
+        ///     Thrown if <paramref name="argument" /> is an empty collection.
+        /// </exception>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown if <paramref name="argument" /> is null.
+        /// </exception>
+        [DebuggerHidden]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static IReadOnlyCollection<T> ArgumentNotNullOrEmpty<T>(IReadOnlyCollection<T>? argument, string argumentName) {
+            if(argument == null) {
+                throw new ArgumentNullException(argumentName);
+            }
+
+            return argument.Count == 0 ? throw new ArgumentException($"'{argumentName}' must not be empty.", argumentName) : argument;
+        }
+
+        /// <summary>
         ///     Throws an exception if the tested string argument is null, an empty string, or only contains whitespace characters.
         /// </summary>
         /// <param name="argument">
