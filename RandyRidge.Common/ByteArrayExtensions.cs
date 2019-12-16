@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
@@ -65,7 +64,7 @@ namespace RandyRidge.Common {
         [DebuggerHidden]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string ToHashText(this byte[]? bytes, HashAlgorithm hashAlgorithm) {
-            Guard.NotNullOrEmpty(bytes as IReadOnlyCollection<byte>, nameof(bytes));
+            Guard.NotNullOrEmpty(bytes, nameof(bytes));
             Guard.NotNull(hashAlgorithm, nameof(hashAlgorithm));
             return hashAlgorithm.ComputeHash(bytes).ToHex();
         }

@@ -8,10 +8,10 @@
     <Nullable>enable</Nullable>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <TargetFrameworks>netcoreapp3.1;netstandard2.1</TargetFrameworks>
+    <TargetFrameworks>netcoreapp3.1</TargetFrameworks>
     <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <Version>0.1.15</Version>
+    <Version>0.1.16</Version>
     <Authors>Randy Ridge</Authors>
     <Company />
     <PackageProjectUrl>https://github.com/randyridge/randyridge-common</PackageProjectUrl>
