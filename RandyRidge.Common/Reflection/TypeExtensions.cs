@@ -22,8 +22,8 @@ namespace RandyRidge.Common.Reflection {
         ///     An object representing the public, static property with the specified name, if found; otherwise, null.
         /// </returns>
         public static PropertyInfo? GetPublicStaticProperty(this Type type, string name) {
-            Guard.ArgumentNotNull(type, nameof(type));
-            Guard.ArgumentNotNullOrWhiteSpace(name, nameof(name));
+            Guard.NotNull(type, nameof(type));
+            Guard.NotNullOrWhiteSpace(name, nameof(name));
             return type.GetProperty(name, PublicStatic);
         }
 
@@ -37,7 +37,7 @@ namespace RandyRidge.Common.Reflection {
         ///     An array representing the public, static properties.
         /// </returns>
         public static PropertyInfo[] GetPublicStaticProperties(this Type type) {
-            Guard.ArgumentNotNull(type, nameof(type));
+            Guard.NotNull(type, nameof(type));
             return type.GetProperties(PublicStatic);
         }
 
@@ -54,8 +54,8 @@ namespace RandyRidge.Common.Reflection {
         ///     An array representing the public, static properties.
         /// </returns>
         public static PropertyInfo[] GetPublicStaticProperties(this Type type, Func<PropertyInfo, bool> predicate) {
-            Guard.ArgumentNotNull(type, nameof(type));
-            Guard.ArgumentNotNull(predicate, nameof(predicate));
+            Guard.NotNull(type, nameof(type));
+            Guard.NotNull(predicate, nameof(predicate));
             return type.GetPublicStaticProperties().Where(predicate).ToArray();
         }
     }

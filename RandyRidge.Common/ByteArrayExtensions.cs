@@ -30,7 +30,7 @@ namespace RandyRidge.Common {
         [DebuggerHidden]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool LinearEquals(this byte[]? array, byte[]? other) {
-            array = Guard.ArgumentNotNull(array, nameof(array));
+            array = Guard.NotNull(array, nameof(array));
 
             if(other == null) {
                 return false;
@@ -65,8 +65,8 @@ namespace RandyRidge.Common {
         [DebuggerHidden]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string ToHashText(this byte[]? bytes, HashAlgorithm hashAlgorithm) {
-            Guard.ArgumentNotNullOrEmpty(bytes as IReadOnlyCollection<byte>, nameof(bytes));
-            Guard.ArgumentNotNull(hashAlgorithm, nameof(hashAlgorithm));
+            Guard.NotNullOrEmpty(bytes as IReadOnlyCollection<byte>, nameof(bytes));
+            Guard.NotNull(hashAlgorithm, nameof(hashAlgorithm));
             return hashAlgorithm.ComputeHash(bytes).ToHex();
         }
     }

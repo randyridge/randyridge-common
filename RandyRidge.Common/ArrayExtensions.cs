@@ -62,7 +62,7 @@ namespace RandyRidge.Common {
         [DebuggerHidden]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool StructureEquals<T>(this T[]? array, T[]? other) {
-            array = Guard.ArgumentNotNull(array, nameof(array));
+            array = Guard.NotNull(array, nameof(array));
             return other != null && ((IStructuralEquatable) array).Equals(other, EqualityComparer<T>.Default);
         }
     }

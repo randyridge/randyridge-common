@@ -10,84 +10,84 @@ namespace RandyRidge.Common {
 
         public static class ArgumentNotNullOrEmpty {
             [Fact]
-            public static void returns_the_argument() => Guard.ArgumentNotNullOrEmpty(TestValues.TestString, Arg).ShouldBe(TestValues.TestString);
+            public static void returns_the_argument() => Guard.NotNullOrEmpty(TestValues.TestString, Arg).ShouldBe(TestValues.TestString);
 
             [Fact]
-            public static void should_not_throw_on_instance() => Should.NotThrow(() => Guard.ArgumentNotNullOrEmpty(TestValues.TestString, Arg));
+            public static void should_not_throw_on_instance() => Should.NotThrow(() => Guard.NotNullOrEmpty(TestValues.TestString, Arg));
 
             [Fact]
-            public static void should_throw_on_empty() => Should.Throw<ArgumentException>(() => Guard.ArgumentNotNullOrEmpty(TestValues.EmptyString, Arg));
+            public static void should_throw_on_empty() => Should.Throw<ArgumentException>(() => Guard.NotNullOrEmpty(TestValues.EmptyString, Arg));
 
             [Fact]
-            public static void should_throw_on_null() => Should.Throw<ArgumentNullException>(() => Guard.ArgumentNotNullOrEmpty(TestValues.NullString, Arg));
+            public static void should_throw_on_null() => Should.Throw<ArgumentNullException>(() => Guard.NotNullOrEmpty(TestValues.NullString, Arg));
         }
 
         public static class ArgumentNotNullOrEmptyWithCollection {
             [Fact]
-            public static void returns_the_argument() => Guard.ArgumentNotNullOrEmpty(TestValues.TestArray as ICollection<string>, Arg).ShouldBe(TestValues.TestArray);
+            public static void returns_the_argument() => Guard.NotNullOrEmpty(TestValues.TestArray as ICollection<string>, Arg).ShouldBe(TestValues.TestArray);
 
             [Fact]
-            public static void should_not_throw_on_instance() => Should.NotThrow(() => Guard.ArgumentNotNullOrEmpty(TestValues.TestArray as ICollection<string>, Arg));
+            public static void should_not_throw_on_instance() => Should.NotThrow(() => Guard.NotNullOrEmpty(TestValues.TestArray as ICollection<string>, Arg));
 
             [Fact]
-            public static void should_throw_on_empty() => Should.Throw<ArgumentException>(() => Guard.ArgumentNotNullOrEmpty(TestValues.EmptyArray as ICollection<string>, Arg));
+            public static void should_throw_on_empty() => Should.Throw<ArgumentException>(() => Guard.NotNullOrEmpty(TestValues.EmptyArray as ICollection<string>, Arg));
 
             [Fact]
-            public static void should_throw_on_null() => Should.Throw<ArgumentNullException>(() => Guard.ArgumentNotNullOrEmpty(TestValues.NullArray as ICollection<string>, Arg));
+            public static void should_throw_on_null() => Should.Throw<ArgumentNullException>(() => Guard.NotNullOrEmpty(TestValues.NullArray as ICollection<string>, Arg));
         }
 
         public static class ArgumentNotNullOrEmptyWithReadOnlyCollection {
             [Fact]
-            public static void returns_the_argument() => Guard.ArgumentNotNullOrEmpty(TestValues.TestArray as IReadOnlyCollection<string>, Arg).ShouldBe(TestValues.TestArray);
+            public static void returns_the_argument() => Guard.NotNullOrEmpty(TestValues.TestArray as IReadOnlyCollection<string>, Arg).ShouldBe(TestValues.TestArray);
 
             [Fact]
-            public static void should_not_throw_on_instance() => Should.NotThrow(() => Guard.ArgumentNotNullOrEmpty(TestValues.TestArray as IReadOnlyCollection<string>, Arg));
+            public static void should_not_throw_on_instance() => Should.NotThrow(() => Guard.NotNullOrEmpty(TestValues.TestArray as IReadOnlyCollection<string>, Arg));
 
             [Fact]
-            public static void should_throw_on_empty() => Should.Throw<ArgumentException>(() => Guard.ArgumentNotNullOrEmpty(TestValues.EmptyArray as IReadOnlyCollection<string>, Arg));
+            public static void should_throw_on_empty() => Should.Throw<ArgumentException>(() => Guard.NotNullOrEmpty(TestValues.EmptyArray as IReadOnlyCollection<string>, Arg));
 
             [Fact]
-            public static void should_throw_on_null() => Should.Throw<ArgumentNullException>(() => Guard.ArgumentNotNullOrEmpty(TestValues.NullArray as IReadOnlyCollection<string>, Arg));
+            public static void should_throw_on_null() => Should.Throw<ArgumentNullException>(() => Guard.NotNullOrEmpty(TestValues.NullArray as IReadOnlyCollection<string>, Arg));
         }
 
         public static class ArgumentNotNullOrWhiteSpace {
             [Fact]
-            public static void returns_the_argument() => Guard.ArgumentNotNullOrWhiteSpace(TestValues.TestString, Arg).ShouldBe(TestValues.TestString);
+            public static void returns_the_argument() => Guard.NotNullOrWhiteSpace(TestValues.TestString, Arg).ShouldBe(TestValues.TestString);
 
             [Fact]
-            public static void should_not_throw_on_instance() => Should.NotThrow(() => Guard.ArgumentNotNullOrWhiteSpace(TestValues.TestString, Arg));
+            public static void should_not_throw_on_instance() => Should.NotThrow(() => Guard.NotNullOrWhiteSpace(TestValues.TestString, Arg));
 
             [Fact]
-            public static void should_throw_on_empty() => Should.Throw<ArgumentException>(() => Guard.ArgumentNotNullOrWhiteSpace(TestValues.EmptyString, Arg));
+            public static void should_throw_on_empty() => Should.Throw<ArgumentException>(() => Guard.NotNullOrWhiteSpace(TestValues.EmptyString, Arg));
 
             [Fact]
-            public static void should_throw_on_null() => Should.Throw<ArgumentNullException>(() => Guard.ArgumentNotNullOrWhiteSpace(TestValues.NullString, Arg));
+            public static void should_throw_on_null() => Should.Throw<ArgumentNullException>(() => Guard.NotNullOrWhiteSpace(TestValues.NullString, Arg));
 
             [Fact]
-            public static void should_throw_on_whitespace() => Should.Throw<ArgumentException>(() => Guard.ArgumentNotNullOrWhiteSpace(TestValues.WhitespaceString, Arg));
+            public static void should_throw_on_whitespace() => Should.Throw<ArgumentException>(() => Guard.NotNullOrWhiteSpace(TestValues.WhitespaceString, Arg));
         }
 
         public static class ArgumentNotNullWithClass {
             [Fact]
-            public static void returns_the_argument() => Guard.ArgumentNotNull(TestValues.TestString, Arg).ShouldBe(TestValues.TestString);
+            public static void returns_the_argument() => Guard.NotNull(TestValues.TestString, Arg).ShouldBe(TestValues.TestString);
 
             [Fact]
-            public static void should_not_throw_on_instance() => Should.NotThrow(() => Guard.ArgumentNotNull(TestValues.TestString, Arg));
+            public static void should_not_throw_on_instance() => Should.NotThrow(() => Guard.NotNull(TestValues.TestString, Arg));
 
             [Fact]
-            public static void should_throw_on_null() => Should.Throw<ArgumentNullException>(() => Guard.ArgumentNotNull(TestValues.NullString, Arg));
+            public static void should_throw_on_null() => Should.Throw<ArgumentNullException>(() => Guard.NotNull(TestValues.NullString, Arg));
         }
 
         public static class ArgumentNotNullWithStruct {
             [Fact]
             // ReSharper disable once PossibleInvalidOperationException
-            public static void returns_the_argument() => Guard.ArgumentNotNull(TestValues.TestNullableInt, Arg).ShouldBe(TestValues.TestNullableInt!.Value);
+            public static void returns_the_argument() => Guard.NotNull(TestValues.TestNullableInt, Arg).ShouldBe(TestValues.TestNullableInt!.Value);
 
             [Fact]
-            public static void should_not_throw_on_instance() => Should.NotThrow(() => Guard.ArgumentNotNull(TestValues.TestNullableInt, Arg));
+            public static void should_not_throw_on_instance() => Should.NotThrow(() => Guard.NotNull(TestValues.TestNullableInt, Arg));
 
             [Fact]
-            public static void should_throw_on_null() => Should.Throw<ArgumentNullException>(() => Guard.ArgumentNotNull(TestValues.NullNullableInt, Arg));
+            public static void should_throw_on_null() => Should.Throw<ArgumentNullException>(() => Guard.NotNull(TestValues.NullNullableInt, Arg));
         }
 
         public static class FileExists {
