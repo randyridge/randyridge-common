@@ -6,10 +6,10 @@
     <RootNamespace>RandyRidge.Common</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <NoWarn>1701;1702;CA1707;</NoWarn>
+    <NoWarn>1034;1701;1702;1707;</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <NoWarn>1701;1702;CA1707;</NoWarn>
+    <NoWarn>1034;1701;1702;1707;</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="TestFile.txt" />

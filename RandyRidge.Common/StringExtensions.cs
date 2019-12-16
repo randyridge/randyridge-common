@@ -49,7 +49,7 @@ namespace RandyRidge.Common {
         [DebuggerHidden]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static byte[] ToUtfBytes(this string? text) {
-            text = Guard.ArgumentNotNull(text, nameof(text));
+            text = Guard.NotNull(text, nameof(text));
             return text.Length == 0 ? Array.Empty<byte>() : Encoding.UTF8.GetBytes(text);
         }
 
@@ -70,8 +70,8 @@ namespace RandyRidge.Common {
         /// </returns>
         [DebuggerHidden]
         public static string ReplaceInvariant(this string text, string? oldValue, string? newValue) {
-            text = Guard.ArgumentNotNull(text, nameof(text));
-            oldValue = Guard.ArgumentNotNull(oldValue, nameof(oldValue));
+            text = Guard.NotNull(text, nameof(text));
+            oldValue = Guard.NotNull(oldValue, nameof(oldValue));
             return text.Replace(oldValue, newValue, StringComparison.InvariantCulture);
         }
     }

@@ -10,142 +10,6 @@ namespace RandyRidge.Common {
     /// </summary>
     public static class Guard {
         /// <summary>
-        ///     Throws an exception if the given argument is null.
-        /// </summary>
-        /// <typeparam name="T">
-        ///     The type of object, must be a class.
-        /// </typeparam>
-        /// <param name="argument">
-        ///     The argument to test.
-        /// </param>
-        /// <param name="argumentName">
-        ///     The name of the argument.
-        /// </param>
-        /// <returns>
-        ///     The argument.
-        /// </returns>
-        /// <exception cref="ArgumentNullException">
-        ///     Thrown if <paramref name="argument" /> is null.
-        /// </exception>
-        [DebuggerHidden]
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T ArgumentNotNull<T>(T? argument, string argumentName) where T : class => argument ?? throw new ArgumentNullException(argumentName);
-
-        /// <summary>
-        ///     Throws an exception if the given argument is null.
-        /// </summary>
-        /// <typeparam name="T">
-        ///     The type of object, must be a struct.
-        /// </typeparam>
-        /// <param name="argument">
-        ///     The argument to test.
-        /// </param>
-        /// <param name="argumentName">
-        ///     The name of the argument.
-        /// </param>
-        /// <returns>
-        ///     The argument.
-        /// </returns>
-        /// <exception cref="ArgumentNullException">
-        ///     Thrown if <paramref name="argument" /> is null.
-        /// </exception>
-        [DebuggerHidden]
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T ArgumentNotNull<T>(T? argument, string argumentName) where T : struct => argument ?? throw new ArgumentNullException(argumentName);
-
-        /// <summary>
-        ///     Throws an exception if the tested string argument is null or an empty string.
-        /// </summary>
-        /// <param name="argument">
-        ///     The argument to test.
-        /// </param>
-        /// <param name="argumentName">
-        ///     The name of the argument.
-        /// </param>
-        /// <returns>
-        ///     The argument.
-        /// </returns>
-        /// <exception cref="ArgumentException">
-        ///     Thrown if <paramref name="argument" /> is an empty string.
-        /// </exception>
-        /// <exception cref="ArgumentNullException">
-        ///     Thrown if <paramref name="argument" /> is null.
-        /// </exception>
-        [DebuggerHidden]
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static string ArgumentNotNullOrEmpty(string? argument, string argumentName) {
-            if(argument == null) {
-                throw new ArgumentNullException(argumentName);
-            }
-
-            if(argument.Length == 0) {
-                throw new ArgumentException($"'{argumentName}' must not be empty.", argumentName);
-            }
-
-            return argument;
-        }
-
-        /// <summary>
-        ///     Throws an exception if the tested collection argument is null or has no items.
-        /// </summary>
-        /// <param name="argument">
-        ///     The argument to test.
-        /// </param>
-        /// <param name="argumentName">
-        ///     The name of the argument.
-        /// </param>
-        /// <returns>
-        ///     The argument.
-        /// </returns>
-        /// <exception cref="ArgumentException">
-        ///     Thrown if <paramref name="argument" /> is an empty collection.
-        /// </exception>
-        /// <exception cref="ArgumentNullException">
-        ///     Thrown if <paramref name="argument" /> is null.
-        /// </exception>
-        [DebuggerHidden]
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static ICollection<T> ArgumentNotNullOrEmpty<T>(ICollection<T>? argument, string argumentName) {
-            if(argument == null) {
-                throw new ArgumentNullException(argumentName);
-            }
-
-            return argument.Count == 0 ? throw new ArgumentException($"'{argumentName}' must not be empty.", argumentName) : argument;
-        }
-
-        /// <summary>
-        ///     Throws an exception if the tested string argument is null, an empty string, or only contains whitespace characters.
-        /// </summary>
-        /// <param name="argument">
-        ///     The argument to test.
-        /// </param>
-        /// <param name="argumentName">
-        ///     The name of the argument.
-        /// </param>
-        /// <returns>
-        ///     The argument.
-        /// </returns>
-        /// <exception cref="ArgumentException">
-        ///     Thrown if <paramref name="argument" /> is an empty string or only contains whitespace characters.
-        /// </exception>
-        /// <exception cref="ArgumentNullException">
-        ///     Thrown if <paramref name="argument" /> is null.
-        /// </exception>
-        [DebuggerHidden]
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static string ArgumentNotNullOrWhiteSpace(string? argument, string argumentName) {
-            if(argument == null) {
-                throw new ArgumentNullException(argumentName);
-            }
-
-            if(argument.IsNullOrWhiteSpace()) {
-                throw new ArgumentException($"'{argumentName}' must not be an empty string or contain only whitespace characters.", argumentName);
-            }
-
-            return argument;
-        }
-
-        /// <summary>
         ///     Throws an exception if the specified file does not exist.
         /// </summary>
         /// <param name="filePath">
@@ -291,6 +155,282 @@ namespace RandyRidge.Common {
         public static int MinimumInclusive(int argument, int minimum, string argumentName) {
             if(argument < minimum) {
                 throw new ArgumentOutOfRangeException(argumentName, $"{argumentName} must be greater-than {minimum}, exclusive.");
+            }
+
+            return argument;
+        }
+
+        /// <summary>
+        ///     Throws an exception if the given argument is null.
+        /// </summary>
+        /// <typeparam name="T">
+        ///     The type of object, must be a class.
+        /// </typeparam>
+        /// <param name="argument">
+        ///     The argument to test.
+        /// </param>
+        /// <param name="argumentName">
+        ///     The name of the argument.
+        /// </param>
+        /// <returns>
+        ///     The argument.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown if <paramref name="argument" /> is null.
+        /// </exception>
+        [DebuggerHidden]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static T NotNull<T>(T? argument, string argumentName) where T : class => argument ?? throw new ArgumentNullException(argumentName);
+
+        /// <summary>
+        ///     Throws an exception if the given argument is null.
+        /// </summary>
+        /// <typeparam name="T">
+        ///     The type of object, must be a struct.
+        /// </typeparam>
+        /// <param name="argument">
+        ///     The argument to test.
+        /// </param>
+        /// <param name="argumentName">
+        ///     The name of the argument.
+        /// </param>
+        /// <returns>
+        ///     The argument.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown if <paramref name="argument" /> is null.
+        /// </exception>
+        [DebuggerHidden]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static T NotNull<T>(T? argument, string argumentName) where T : struct => argument ?? throw new ArgumentNullException(argumentName);
+
+        /// <summary>
+        ///     Throws an exception if the tested string argument is null or an empty string.
+        /// </summary>
+        /// <param name="argument">
+        ///     The argument to test.
+        /// </param>
+        /// <param name="argumentName">
+        ///     The name of the argument.
+        /// </param>
+        /// <returns>
+        ///     The argument.
+        /// </returns>
+        /// <exception cref="ArgumentException">
+        ///     Thrown if <paramref name="argument" /> is an empty string.
+        /// </exception>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown if <paramref name="argument" /> is null.
+        /// </exception>
+        [DebuggerHidden]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static string NotNullOrEmpty(string? argument, string argumentName) {
+            if(argument == null) {
+                throw new ArgumentNullException(argumentName);
+            }
+
+            if(argument.Length == 0) {
+                throw new ArgumentException($"'{argumentName}' must not be empty.", argumentName);
+            }
+
+            return argument;
+        }
+
+        /// <summary>
+        ///     Throws an exception if the tested collection argument is null or has no items.
+        /// </summary>
+        /// <param name="argument">
+        ///     The argument to test.
+        /// </param>
+        /// <param name="argumentName">
+        ///     The name of the argument.
+        /// </param>
+        /// <returns>
+        ///     The argument.
+        /// </returns>
+        /// <exception cref="ArgumentException">
+        ///     Thrown if <paramref name="argument" /> is an empty collection.
+        /// </exception>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown if <paramref name="argument" /> is null.
+        /// </exception>
+        [DebuggerHidden]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static ICollection<T> NotNullOrEmpty<T>(ICollection<T>? argument, string argumentName) {
+            if(argument == null) {
+                throw new ArgumentNullException(argumentName);
+            }
+
+            return argument.Count == 0 ? throw new ArgumentException($"'{argumentName}' must not be empty.", argumentName) : argument;
+        }
+
+        /// <summary>
+        ///     Throws an exception if the tested collection argument is null or has no items.
+        /// </summary>
+        /// <param name="argument">
+        ///     The argument to test.
+        /// </param>
+        /// <param name="argumentName">
+        ///     The name of the argument.
+        /// </param>
+        /// <returns>
+        ///     The argument.
+        /// </returns>
+        /// <exception cref="ArgumentException">
+        ///     Thrown if <paramref name="argument" /> is an empty collection.
+        /// </exception>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown if <paramref name="argument" /> is null.
+        /// </exception>
+        [DebuggerHidden]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static IReadOnlyCollection<T> NotNullOrEmpty<T>(IReadOnlyCollection<T>? argument, string argumentName) {
+            if(argument == null) {
+                throw new ArgumentNullException(argumentName);
+            }
+
+            return argument.Count == 0 ? throw new ArgumentException($"'{argumentName}' must not be empty.", argumentName) : argument;
+        }
+
+        /// <summary>
+        ///     Throws an exception if the tested memory argument is null or has no items.
+        /// </summary>
+        /// <param name="argument">
+        ///     The argument to test.
+        /// </param>
+        /// <param name="argumentName">
+        ///     The name of the argument.
+        /// </param>
+        /// <returns>
+        ///     The argument.
+        /// </returns>
+        /// <exception cref="ArgumentException">
+        ///     Thrown if <paramref name="argument" /> is an empty collection.
+        /// </exception>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown if <paramref name="argument" /> is null.
+        /// </exception>
+        [DebuggerHidden]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static ReadOnlyMemory<T> NotNullOrEmpty<T>(ReadOnlyMemory<T>? argument, string argumentName) {
+            if(argument == null) {
+                throw new ArgumentNullException(argumentName);
+            }
+
+            return argument.Value.Length == 0 ? throw new ArgumentException($"'{argumentName}' must not be empty.", argumentName) : argument.Value;
+        }
+
+        /// <summary>
+        ///     Throws an exception if the tested memory argument is null or has no items.
+        /// </summary>
+        /// <param name="argument">
+        ///     The argument to test.
+        /// </param>
+        /// <param name="argumentName">
+        ///     The name of the argument.
+        /// </param>
+        /// <returns>
+        ///     The argument.
+        /// </returns>
+        /// <exception cref="ArgumentException">
+        ///     Thrown if <paramref name="argument" /> is an empty collection.
+        /// </exception>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown if <paramref name="argument" /> is null.
+        /// </exception>
+        [DebuggerHidden]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Memory<T> NotNullOrEmpty<T>(Memory<T>? argument, string argumentName) {
+            if(argument == null) {
+                throw new ArgumentNullException(argumentName);
+            }
+
+            return argument.Value.Length == 0 ? throw new ArgumentException($"'{argumentName}' must not be empty.", argumentName) : argument.Value;
+        }
+
+        /// <summary>
+        ///     Throws an exception if the tested span argument is null or has no items.
+        /// </summary>
+        /// <param name="argument">
+        ///     The argument to test.
+        /// </param>
+        /// <param name="argumentName">
+        ///     The name of the argument.
+        /// </param>
+        /// <returns>
+        ///     The argument.
+        /// </returns>
+        /// <exception cref="ArgumentException">
+        ///     Thrown if <paramref name="argument" /> is an empty collection.
+        /// </exception>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown if <paramref name="argument" /> is null.
+        /// </exception>
+        [DebuggerHidden]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static ReadOnlySpan<T> NotNullOrEmpty<T>(ReadOnlySpan<T> argument, string argumentName) {
+            if(argument == null) {
+                throw new ArgumentNullException(argumentName);
+            }
+
+            return argument.Length == 0 ? throw new ArgumentException($"'{argumentName}' must not be empty.", argumentName) : argument;
+        }
+
+        /// <summary>
+        ///     Throws an exception if the tested memory argument is null or has no items.
+        /// </summary>
+        /// <param name="argument">
+        ///     The argument to test.
+        /// </param>
+        /// <param name="argumentName">
+        ///     The name of the argument.
+        /// </param>
+        /// <returns>
+        ///     The argument.
+        /// </returns>
+        /// <exception cref="ArgumentException">
+        ///     Thrown if <paramref name="argument" /> is an empty collection.
+        /// </exception>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown if <paramref name="argument" /> is null.
+        /// </exception>
+        [DebuggerHidden]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Span<T> NotNullOrEmpty<T>(Span<T> argument, string argumentName) {
+            if(argument == null) {
+                throw new ArgumentNullException(argumentName);
+            }
+
+            return argument.Length == 0 ? throw new ArgumentException($"'{argumentName}' must not be empty.", argumentName) : argument;
+        }
+
+        /// <summary>
+        ///     Throws an exception if the tested string argument is null, an empty string, or only contains whitespace characters.
+        /// </summary>
+        /// <param name="argument">
+        ///     The argument to test.
+        /// </param>
+        /// <param name="argumentName">
+        ///     The name of the argument.
+        /// </param>
+        /// <returns>
+        ///     The argument.
+        /// </returns>
+        /// <exception cref="ArgumentException">
+        ///     Thrown if <paramref name="argument" /> is an empty string or only contains whitespace characters.
+        /// </exception>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown if <paramref name="argument" /> is null.
+        /// </exception>
+        [DebuggerHidden]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static string NotNullOrWhiteSpace(string? argument, string argumentName) {
+            if(argument == null) {
+                throw new ArgumentNullException(argumentName);
+            }
+
+            if(argument.IsNullOrWhiteSpace()) {
+                throw new ArgumentException($"'{argumentName}' must not be an empty string or contain only whitespace characters.", argumentName);
             }
 
             return argument;

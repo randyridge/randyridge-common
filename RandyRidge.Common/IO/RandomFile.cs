@@ -16,7 +16,7 @@ namespace RandyRidge.Common.IO {
         ///     The extension to give the file.
         /// </param>
         public RandomFile(string extension) {
-            extension = Guard.ArgumentNotNullOrWhiteSpace(extension, nameof(extension));
+            extension = Guard.NotNullOrWhiteSpace(extension, nameof(extension));
             Path = IoPath.Join(IoPath.GetTempPath(), $"{Guid.NewGuid().ToStringWithDigitsOnly()}.{extension.ReplaceInvariant(".", "")}");
             using var _ = File.Create(Path);
         }

@@ -28,8 +28,8 @@ namespace RandyRidge.Common {
         [DebuggerHidden]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void ForEach<T>(this IEnumerable<T>? enumerable, Action<T> action) {
-            enumerable = Guard.ArgumentNotNull(enumerable, nameof(enumerable));
-            Guard.ArgumentNotNull(action, nameof(action));
+            enumerable = Guard.NotNull(enumerable, nameof(enumerable));
+            Guard.NotNull(action, nameof(action));
             foreach(var value in enumerable) {
                 action(value);
             }
@@ -82,7 +82,7 @@ namespace RandyRidge.Common {
         [DebuggerHidden]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string ToHex(this IEnumerable<byte>? bytes) {
-            bytes = Guard.ArgumentNotNull(bytes, nameof(bytes));
+            bytes = Guard.NotNull(bytes, nameof(bytes));
 
             var result = new StringBuilder();
             foreach(var b in bytes) {

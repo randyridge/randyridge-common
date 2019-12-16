@@ -37,7 +37,7 @@ namespace RandyRidge.Common {
         [DebuggerHidden]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ConfiguredTaskAwaitable ForAwait(this Task? task) {
-            task = Guard.ArgumentNotNull(task, nameof(task));
+            task = Guard.NotNull(task, nameof(task));
             return task.ConfigureAwait(false);
         }
 
@@ -56,7 +56,7 @@ namespace RandyRidge.Common {
         [DebuggerHidden]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ConfiguredTaskAwaitable<T> ForAwait<T>(this Task<T>? task) {
-            task = Guard.ArgumentNotNull(task, nameof(task));
+            task = Guard.NotNull(task, nameof(task));
             return task.ConfigureAwait(false);
         }
 
@@ -168,19 +168,19 @@ namespace RandyRidge.Common {
 
         [DebuggerHidden]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static Task GuardTask(Task? task) => Guard.ArgumentNotNull(task, nameof(task));
+        private static Task GuardTask(Task? task) => Guard.NotNull(task, nameof(task));
 
         [DebuggerHidden]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static Task<T> GuardTask<T>(Task<T>? task) => Guard.ArgumentNotNull(task, nameof(task));
+        private static Task<T> GuardTask<T>(Task<T>? task) => Guard.NotNull(task, nameof(task));
 
         [DebuggerHidden]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static IEnumerable<Task> GuardTasks(IEnumerable<Task>? tasks) => Guard.ArgumentNotNull(tasks, nameof(tasks));
+        private static IEnumerable<Task> GuardTasks(IEnumerable<Task>? tasks) => Guard.NotNull(tasks, nameof(tasks));
 
         [DebuggerHidden]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static IEnumerable<Task<T>> GuardTasks<T>(IEnumerable<Task<T>>? tasks) => Guard.ArgumentNotNull(tasks, nameof(tasks));
+        private static IEnumerable<Task<T>> GuardTasks<T>(IEnumerable<Task<T>>? tasks) => Guard.NotNull(tasks, nameof(tasks));
 
         [DebuggerHidden]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
