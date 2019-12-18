@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Security.Cryptography;
+using System.Text;
 using Shouldly;
 using Xunit;
 
@@ -28,11 +29,24 @@ namespace RandyRidge.Common {
             public static void throws_on_null_array() => Should.Throw<ArgumentNullException>(() => ByteArrayExtensions.LinearEquals(null, new byte[] {1}));
         }
 
-        public static class ToHex {
+        public static class ToHash {
             private static readonly HashAlgorithm HashAlgorithm = HashAlgorithm.Create("MD5");
 
             [Fact]
-            public static void returns_correct_value() => ByteArrayExtensions.ToHashText("test".ToUtfBytes(), HashAlgorithm).ShouldBe(TestValues.TestMd5Hash);
+            public static void returns_correct_value() => ByteArrayExtensions.ToHash("test".ToUtfBytes(), HashAlgorithm).ShouldBe(TestValues.TestMd5Hash);
+
+            [Fact]
+            public static void throws_on_empty_bytes() => Should.Throw<ArgumentException>(() => ByteArrayExtensions.ToHash(TestValues.EmptyByteArray, HashAlgorithm));
+
+            [Fact]
+            public static void throws_on_null_bytes() => Should.Throw<ArgumentNullException>(() => ByteArrayExtensions.ToHash(TestValues.NullByteArray, HashAlgorithm));
+        }
+
+        public static class ToHashText {
+            private static readonly HashAlgorithm HashAlgorithm = HashAlgorithm.Create("MD5");
+
+            [Fact]
+            public static void returns_correct_value() => ByteArrayExtensions.ToHashText("test".ToUtfBytes(), HashAlgorithm).ShouldBe(TestValues.TestMd5HashHex);
 
             [Fact]
             public static void throws_on_empty_bytes() => Should.Throw<ArgumentException>(() => ByteArrayExtensions.ToHashText(TestValues.EmptyByteArray, HashAlgorithm));
