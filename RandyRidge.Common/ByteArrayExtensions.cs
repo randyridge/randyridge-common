@@ -53,7 +53,33 @@ namespace RandyRidge.Common {
         ///     The hash algorithm.
         /// </param>
         /// <returns>
-        ///     The hexadecimal representation of the hashed byte array.
+        ///     The hashed byte array.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown if <paramref name="bytes" /> or <paramref name="hashAlgorithm" /> is null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        ///     Thrown if <paramref name="bytes" /> is empty.
+        /// </exception>
+        [DebuggerHidden]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static byte[] ToHash(this byte[]? bytes, HashAlgorithm hashAlgorithm) {
+            Guard.NotNullOrEmpty(bytes, nameof(bytes));
+            Guard.NotNull(hashAlgorithm, nameof(hashAlgorithm));
+            return hashAlgorithm.ComputeHash(bytes);
+        }
+
+        /// <summary>
+        ///     Hashes the specified byte array with the specified hash algorithm.
+        /// </summary>
+        /// <param name="bytes">
+        ///     The bytes to hash.
+        /// </param>
+        /// <param name="hashAlgorithm">
+        ///     The hash algorithm.
+        /// </param>
+        /// <returns>
+        ///     The hexadecimal string representation of the hashed byte array.
         /// </returns>
         /// <exception cref="ArgumentNullException">
         ///     Thrown if <paramref name="bytes" /> or <paramref name="hashAlgorithm" /> is null.
@@ -66,7 +92,7 @@ namespace RandyRidge.Common {
         public static string ToHashText(this byte[]? bytes, HashAlgorithm hashAlgorithm) {
             Guard.NotNullOrEmpty(bytes, nameof(bytes));
             Guard.NotNull(hashAlgorithm, nameof(hashAlgorithm));
-            return hashAlgorithm.ComputeHash(bytes).ToHex();
+            return bytes.ToHash(hashAlgorithm).ToHex();
         }
     }
 }
