@@ -237,6 +237,38 @@ namespace RandyRidge.Common {
         }
 
         /// <summary>
+        ///     Throws an exception if the tested stream argument is null or empty.
+        /// </summary>
+        /// <param name="argument">
+        ///     The argument to test.
+        /// </param>
+        /// <param name="argumentName">
+        ///     The name of the argument.
+        /// </param>
+        /// <returns>
+        ///     The argument.
+        /// </returns>
+        /// <exception cref="ArgumentException">
+        ///     Thrown if <paramref name="argument" /> is empty.
+        /// </exception>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown if <paramref name="argument" /> is null.
+        /// </exception>
+        [DebuggerHidden]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Stream NotNullOrEmpty(Stream? argument, string argumentName) {
+            if(argument == null) {
+                throw new ArgumentNullException(argumentName);
+            }
+
+            if(argument.Length == 0) {
+                throw new ArgumentException($"'{argumentName}' must not be empty.", argumentName);
+            }
+
+            return argument;
+        }
+
+        /// <summary>
         ///     Throws an exception if the tested array argument is null or has no items.
         /// </summary>
         /// <param name="argument">
