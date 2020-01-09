@@ -92,7 +92,7 @@ namespace RandyRidge.Common {
         public static string ToHashText(this byte[]? bytes, HashAlgorithm hashAlgorithm) {
             Guard.NotNullOrEmpty(bytes, nameof(bytes));
             Guard.NotNull(hashAlgorithm, nameof(hashAlgorithm));
-            return bytes.ToHash(hashAlgorithm).ToHex();
+            return ToHash(bytes, hashAlgorithm).ToHex();
         }
     }
 }
