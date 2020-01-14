@@ -1,9 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Threading.Tasks;
 using Shouldly;
 using Xunit;
 
 namespace RandyRidge.Common {
     public static class IEnumerableExtensionsTester {
+        private static readonly IEnumerable<string>? NullEnumerable = null;
+        private static readonly IEnumerable<string> PopulatedEnumerable = new[] {"1", "2", "3"};
+
         public static class ForEach {
             [Fact]
             public static void executes_supplied_action() {
@@ -19,6 +26,28 @@ namespace RandyRidge.Common {
             public static void throws_on_null_enumerable() => Should.Throw<ArgumentNullException>(() => TestValues.NullEnumerable.ForEach(x => {
                 var _ = x;
             }));
+        }
+
+        public static class ForEachAsync {
+            [Fact]
+            public static async Task executes_supplied_action() {
+                var list = new List<int>();
+                await PopulatedEnumerable.ForEachAsync(3, x => {
+                    list.Add(int.Parse(x, CultureInfo.InvariantCulture));
+                    return Task.CompletedTask;
+                }).ForAwait();
+                list.Sum().ShouldBe(6);
+            }
+
+            [Fact]
+            public static Task throws_on_null_action() {
+                return Should.ThrowAsync<ArgumentNullException>(() => PopulatedEnumerable.ForEachAsync(1, null!));
+            }
+
+            [Fact]
+            public static Task throws_on_null_enumerable() {
+                return Should.ThrowAsync<ArgumentNullException>(() => NullEnumerable!.ForEachAsync(3, x => Task.CompletedTask));
+            }
         }
 
         public static class HasValue {

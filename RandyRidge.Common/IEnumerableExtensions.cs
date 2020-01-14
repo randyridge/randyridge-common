@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace RandyRidge.Common {
     /// <summary>
@@ -33,6 +35,45 @@ namespace RandyRidge.Common {
             foreach(var value in enumerable) {
                 action(value);
             }
+        }
+
+        /// <summary>
+        ///     Executes the specified asynchronous action for each member of the enumerable />.
+        /// </summary>
+        /// <param name="enumerable">
+        ///     An enumerable that contains the objects to execute the action upon.
+        /// </param>
+        /// <param name="degreeOfParallelism">
+        ///     The maximum number of concurrent tasks.
+        /// </param>
+        /// <param name="action">
+        ///     The action to perform on the items in the enumerable.
+        /// </param>
+        /// <typeparam name="T">
+        ///     The type of the members of <paramref name="enumerable" />.
+        /// </typeparam>
+        /// <returns>
+        ///     A task representing the completion of the operation.
+        /// </returns>
+        public static async Task ForEachAsync<T>(this IEnumerable<T> enumerable, int degreeOfParallelism, Func<T, Task> action) {
+            Guard.NotNull(enumerable, nameof(enumerable));
+            Guard.NotNull(action, nameof(action));
+            var tasks = new List<Task>();
+            using var throttler = new SemaphoreSlim(degreeOfParallelism);
+            foreach(var element in enumerable) {
+                await throttler.WaitAsync().ForAwait();
+                tasks.Add(Task.Run(async () => {
+                    try {
+                        await action(element).ForAwait();
+                    }
+                    finally {
+                        // ReSharper disable once AccessToDisposedClosure
+                        throttler.Release();
+                    }
+                }));
+            }
+
+            await Task.WhenAll(tasks).ForAwait();
         }
 
         /// <summary>
