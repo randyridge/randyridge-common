@@ -64,8 +64,8 @@ namespace RandyRidge.Common {
         [DebuggerHidden]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static byte[] ToHash(this byte[]? bytes, HashAlgorithm hashAlgorithm) {
-            Guard.NotNullOrEmpty(bytes, nameof(bytes));
-            Guard.NotNull(hashAlgorithm, nameof(hashAlgorithm));
+            bytes = Guard.NotNullOrEmpty(bytes, nameof(bytes));
+            hashAlgorithm = Guard.NotNull(hashAlgorithm, nameof(hashAlgorithm));
             return hashAlgorithm.ComputeHash(bytes);
         }
 
@@ -90,8 +90,8 @@ namespace RandyRidge.Common {
         [DebuggerHidden]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string ToHashText(this byte[]? bytes, HashAlgorithm hashAlgorithm) {
-            Guard.NotNullOrEmpty(bytes, nameof(bytes));
-            Guard.NotNull(hashAlgorithm, nameof(hashAlgorithm));
+            bytes = Guard.NotNullOrEmpty(bytes, nameof(bytes));
+            hashAlgorithm = Guard.NotNull(hashAlgorithm, nameof(hashAlgorithm));
             return ToHash(bytes, hashAlgorithm).ToHex();
         }
     }
