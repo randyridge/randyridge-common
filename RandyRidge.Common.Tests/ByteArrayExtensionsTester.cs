@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Security.Cryptography;
-using System.Text;
 using Shouldly;
 using Xunit;
 
@@ -8,21 +7,21 @@ namespace RandyRidge.Common {
     public static class ByteArrayExtensionsTester {
         public static class LinearEquals {
             [Fact]
-            public static void returns_false_when_compared_to_different_length_array() => ByteArrayExtensions.LinearEquals(new byte[] {1, 2}, new byte[] {1}).ShouldBeFalse();
+            public static void returns_false_when_compared_to_different_length_array() => new byte[] {1, 2}.LinearEquals(new byte[] {1}).ShouldBeFalse();
 
             [Fact]
-            public static void returns_false_when_compared_to_different_values() => ByteArrayExtensions.LinearEquals(new byte[] {1, 2}, new byte[] {3, 4}).ShouldBeFalse();
+            public static void returns_false_when_compared_to_different_values() => new byte[] {1, 2}.LinearEquals(new byte[] {3, 4}).ShouldBeFalse();
 
             [Fact]
-            public static void returns_false_when_compared_to_null() => ByteArrayExtensions.LinearEquals(new byte[] {1}, null).ShouldBeFalse();
+            public static void returns_false_when_compared_to_null() => new byte[] {1}.LinearEquals(null).ShouldBeFalse();
 
             [Fact]
-            public static void returns_true_when_compared_to_different_instance_with_same_values() => ByteArrayExtensions.LinearEquals(new byte[] {1}, new byte[] {1}).ShouldBeTrue();
+            public static void returns_true_when_compared_to_different_instance_with_same_values() => new byte[] {1}.LinearEquals(new byte[] {1}).ShouldBeTrue();
 
             [Fact]
             public static void returns_true_when_compared_to_same_instance() {
                 var x = new byte[] {1};
-                ByteArrayExtensions.LinearEquals(x, x).ShouldBeTrue();
+                x.LinearEquals(x).ShouldBeTrue();
             }
 
             [Fact]
@@ -30,29 +29,29 @@ namespace RandyRidge.Common {
         }
 
         public static class ToHash {
-            private static readonly HashAlgorithm HashAlgorithm = HashAlgorithm.Create("MD5");
+            private static readonly HashAlgorithm HashAlgorithm = HashAlgorithm.Create("MD5")!;
 
             [Fact]
-            public static void returns_correct_value() => ByteArrayExtensions.ToHash("test".ToUtfBytes(), HashAlgorithm).ShouldBe(TestValues.TestMd5Hash);
+            public static void returns_correct_value() => "test".ToUtfBytes().ToHash(HashAlgorithm).ShouldBe(TestValues.TestMd5Hash);
 
             [Fact]
-            public static void throws_on_empty_bytes() => Should.Throw<ArgumentException>(() => ByteArrayExtensions.ToHash(TestValues.EmptyByteArray, HashAlgorithm));
+            public static void throws_on_empty_bytes() => Should.Throw<ArgumentException>(() => TestValues.EmptyByteArray.ToHash(HashAlgorithm));
 
             [Fact]
-            public static void throws_on_null_bytes() => Should.Throw<ArgumentNullException>(() => ByteArrayExtensions.ToHash(TestValues.NullByteArray, HashAlgorithm));
+            public static void throws_on_null_bytes() => Should.Throw<ArgumentNullException>(() => TestValues.NullByteArray.ToHash(HashAlgorithm));
         }
 
         public static class ToHashText {
-            private static readonly HashAlgorithm HashAlgorithm = HashAlgorithm.Create("MD5");
+            private static readonly HashAlgorithm HashAlgorithm = HashAlgorithm.Create("MD5")!;
 
             [Fact]
-            public static void returns_correct_value() => ByteArrayExtensions.ToHashText("test".ToUtfBytes(), HashAlgorithm).ShouldBe(TestValues.TestMd5HashHex);
+            public static void returns_correct_value() => "test".ToUtfBytes().ToHashText(HashAlgorithm).ShouldBe(TestValues.TestMd5HashHex);
 
             [Fact]
-            public static void throws_on_empty_bytes() => Should.Throw<ArgumentException>(() => ByteArrayExtensions.ToHashText(TestValues.EmptyByteArray, HashAlgorithm));
+            public static void throws_on_empty_bytes() => Should.Throw<ArgumentException>(() => TestValues.EmptyByteArray.ToHashText(HashAlgorithm));
 
             [Fact]
-            public static void throws_on_null_bytes() => Should.Throw<ArgumentNullException>(() => ByteArrayExtensions.ToHashText(TestValues.NullByteArray, HashAlgorithm));
+            public static void throws_on_null_bytes() => Should.Throw<ArgumentNullException>(() => TestValues.NullByteArray.ToHashText(HashAlgorithm));
         }
     }
 }
