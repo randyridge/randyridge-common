@@ -132,5 +132,23 @@ namespace RandyRidge.Common {
 
             return result.ToString();
         }
+
+        /// <summary>
+        ///     Returns an enumerable without null items.
+        /// </summary>
+        /// <param name="enumerable">
+        ///     The enumerable to evaluate.
+        /// </param>
+        /// <typeparam name="T">
+        ///     The type of the members of <paramref name="enumerable" />.
+        /// </typeparam>
+        /// <returns>
+        ///     An enumerable without null items.
+        /// </returns>
+        [DebuggerHidden]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static IEnumerable<T> WhereNotNull<T>(this IEnumerable<T>? enumerable) {
+	        return enumerable == null ? Array.Empty<T>() : enumerable.Where(x => x != null);
+        }
     }
 }

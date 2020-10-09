@@ -8,8 +8,12 @@ using Xunit;
 
 namespace RandyRidge.Common {
     public static class IEnumerableExtensionsTester {
+	    private static readonly IEnumerable<string> EmptyEnumerable = new string[0];
         private static readonly IEnumerable<string>? NullEnumerable = null;
         private static readonly IEnumerable<string> PopulatedEnumerable = new[] {"1", "2", "3"};
+        private static readonly IEnumerable<string> PopulatedWithSomeNullsEnumerable = new[] {
+	        "1", null, "2", null, "3", null
+        };
 
         public static class ForEach {
             [Fact]
@@ -81,6 +85,23 @@ namespace RandyRidge.Common {
 
             [Fact]
             public static void throws_on_null_bytes() => Should.Throw<ArgumentNullException>(() => TestValues.NullByteArray.ForEach(null!));
+        }
+
+        public static class WhereNotNull {
+	        [Fact]
+	        public static void does_not_filter_populated_items() {
+		        PopulatedEnumerable.WhereNotNull().ShouldBe(PopulatedEnumerable);
+	        }
+
+	        [Fact]
+	        public static void filters_out_null_items() {
+		        PopulatedWithSomeNullsEnumerable.WhereNotNull().ShouldBe(PopulatedEnumerable);
+	        }
+
+	        [Fact]
+	        public static void returns_empty_on_null() {
+		        NullEnumerable.WhereNotNull().ShouldBe(EmptyEnumerable);
+	        }
         }
     }
 }
