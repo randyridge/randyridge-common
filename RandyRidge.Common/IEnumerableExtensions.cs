@@ -134,6 +134,37 @@ namespace RandyRidge.Common {
         }
 
         /// <summary>
+        ///		Converts the specified <paramref name="enumerable" /> to a sorted dictionary
+        ///		given the specified <paramref name="keySelector" />.
+        /// </summary>
+        /// <typeparam name="TKey">
+        ///		The type of the key.
+        /// </typeparam>
+        /// <typeparam name="TValue">
+        ///		The type of the value.
+        /// </typeparam>
+        /// <param name="enumerable">
+        ///		The enumeration to iterate upon.
+        /// </param>
+        /// <param name="keySelector">
+        ///		The key/value selection and generation function.
+        /// </param>
+        /// <returns>
+        ///		The sorted <paramref name="enumerable" /> according to <paramref name="keySelector" />.
+        /// </returns>
+        [DebuggerHidden]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static SortedDictionary<TKey, TValue> ToSortedDictionary<TKey, TValue>(this IEnumerable<TValue> enumerable, Func<TValue, TKey>? keySelector) where TKey : notnull {
+	        enumerable = Guard.NotNull(enumerable, nameof(enumerable));
+	        keySelector = Guard.NotNull(keySelector, nameof(keySelector));
+	        var result = new SortedDictionary<TKey, TValue>();
+	        foreach(var item in enumerable) {
+		        result.Add(keySelector(item), item);
+	        }
+	        return result;
+        }
+
+        /// <summary>
         ///     Returns an enumerable without null items.
         /// </summary>
         /// <param name="enumerable">

@@ -87,6 +87,23 @@ namespace RandyRidge.Common {
             public static void throws_on_null_bytes() => Should.Throw<ArgumentNullException>(() => TestValues.NullByteArray.ForEach(null!));
         }
 
+        public static class ToSortedDictionary {
+	        [Fact]
+	        public static void sorts_correctly() {
+		        var result = TestValues.TestEnumerable!.ToSortedDictionary(x => $"Key{x}");
+            result.ShouldNotBeNull();
+            result["Key1"].ShouldBe(1);
+            result["Key2"].ShouldBe(2);
+            result["Key3"].ShouldBe(3);
+	        }
+
+	        [Fact]
+	        public static void throws_on_null_enumerable() => Should.Throw<ArgumentNullException>(() => TestValues.NullEnumerable!.ToSortedDictionary(x => x += 1));
+
+	        [Fact]
+	        public static void throws_on_null_key_selector() => Should.Throw<ArgumentNullException>(() => TestValues.TestEnumerable!.ToSortedDictionary((Func<int, int>) null!));
+        }
+
         public static class WhereNotNull {
 	        [Fact]
 	        public static void does_not_filter_populated_items() {
