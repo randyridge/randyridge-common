@@ -1,5 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
+    <IsPackable>false</IsPackable>
     <Nullable>enable</Nullable>
     <RootNamespace>RandyRidge.Common</RootNamespace>
     <TargetFramework>net5.0</TargetFramework>
