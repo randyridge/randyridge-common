@@ -1,4 +1,4 @@
 ﻿namespace RandyRidge.Common.Reflection {
-    public sealed class EmptyStub {
-    }
+	public sealed class EmptyStub {
+	}
 }
