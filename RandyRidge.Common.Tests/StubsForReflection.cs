@@ -8,14 +8,14 @@ namespace RandyRidge.Common {
 		private static bool isPrivateStaticField;
 		private readonly bool isPrivateField;
 
+		public int IntField;
+
 		public StubsForReflection() {
 			isPrivateField = false;
 			isPrivateField.ToString();
 			isPrivateStaticField = true;
 			isPrivateStaticField.ToString();
 		}
-
-		public int IntField;
 
 		public int IntProperty { get; set; }
 
@@ -32,7 +32,6 @@ namespace RandyRidge.Common {
 
 		public int Method() => 42;
 
-		private bool PrivateMethod() {
-			return true;
-		}
-	}}
+		private bool PrivateMethod() => true;
+	}
+}
