@@ -10,6 +10,24 @@ namespace RandyRidge.Common {
 	/// </summary>
 	public static class StreamExtensions {
 		/// <summary>
+		///   If the stream is seekable, reset to position 0.
+		/// </summary>
+		/// <param name="stream">
+		///   The stream to reset.
+		/// </param>
+		/// <exception cref="ArgumentNullException">
+		///   Thrown if <paramref name="stream" /> is null.
+		/// </exception>
+		[DebuggerHidden]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void Reset(this Stream stream) {
+			stream = Guard.NotNullOrEmpty(stream, nameof(stream));
+			if(stream.CanSeek) {
+				stream.Position = 0;
+			}
+		}
+
+		/// <summary>
 		///   Hashes the specified stream with the specified hash algorithm.
 		/// </summary>
 		/// <param name="stream">
@@ -30,9 +48,8 @@ namespace RandyRidge.Common {
 		[DebuggerHidden]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static byte[] ToHash(this Stream stream, HashAlgorithm hashAlgorithm) {
-			Guard.NotNullOrEmpty(stream, nameof(stream));
-			Guard.NotNull(hashAlgorithm, nameof(hashAlgorithm));
-			// TODO: allocations
+			stream = Guard.NotNullOrEmpty(stream, nameof(stream));
+			hashAlgorithm = Guard.NotNull(hashAlgorithm, nameof(hashAlgorithm));
 			return hashAlgorithm.ComputeHash(stream);
 		}
 
@@ -57,9 +74,8 @@ namespace RandyRidge.Common {
 		[DebuggerHidden]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static string ToHashText(this Stream stream, HashAlgorithm hashAlgorithm) {
-			Guard.NotNullOrEmpty(stream, nameof(stream));
-			Guard.NotNull(hashAlgorithm, nameof(hashAlgorithm));
-			// TODO: allocations
+			stream = Guard.NotNullOrEmpty(stream, nameof(stream));
+			hashAlgorithm = Guard.NotNull(hashAlgorithm, nameof(hashAlgorithm));
 			return ToHash(stream, hashAlgorithm).ToHex();
 		}
 	}
